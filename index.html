@@ -5,14 +5,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AUX USA Site Map</title>
 <style>
-:root{--bg:#ededed;--ink:#111;--paper:#fff;--muted:#666}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink)}
-.topbar{height:42px;background:#191919;color:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;position:sticky;top:0;z-index:10}.topbar strong{font-size:11px;letter-spacing:.05em}.topbar .grow{flex:1}.topbar a{border:1px solid #666;background:#292929;color:#fff;border-radius:4px;padding:5px 8px;text-decoration:none;font-size:10px}
-.intro{max-width:1180px;margin:12px auto 6px;padding:0 10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}.intro h1{font-size:18px;margin:0 0 4px}.intro p{margin:0;color:#5c5c5c;font-size:10px;line-height:1.6;max-width:850px}.legend{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.legend span{font-size:9px;border:1px solid #b0b0b0;background:#fff;padding:3px 5px;white-space:nowrap}.legend .optional{border-style:dashed}
-.map-wrap{padding:6px 10px 16px}.canvas{position:relative;width:min(1180px,100%);height:575px;margin:0 auto;background:#fff;border:1px solid #aaa;box-shadow:0 5px 16px rgba(0,0,0,.06);overflow:hidden}svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{stroke:#8a8a8a;stroke-width:1.1;fill:none}
-.node{position:absolute;width:130px;min-height:66px;background:#fff;border:1px solid #777;padding:8px 9px;color:#111;display:flex;flex-direction:column;justify-content:center;z-index:2;transform:translateX(-50%)}.node .id{font-size:8px;color:#888;margin-bottom:2px}.node strong{font-size:10px;line-height:1.25}.node .route{font-size:8px;color:#707070;margin-top:4px;word-break:break-all}.node.root{border:2px solid #111;background:#f1f1f1;width:150px;min-height:72px}.node.collection{background:#fbfbfb}.node.template{border-width:2px}.node.optional{border-style:dashed}.node.discovery{background:#f4f4f4}.hint{position:absolute;right:8px;top:7px;font-size:8px;color:#999}
-.role-note{position:absolute;left:3.2%;right:3.2%;bottom:12px;border-top:1px solid #bbb;padding-top:8px}.role-note>p{font-size:8px;color:#777;margin:0 0 6px}.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.role-box{background:#f8f8f8;border:1px solid #bbb;padding:7px 8px;min-height:52px}.role-box strong{font-size:9px}.role-box p{font-size:8px;line-height:1.4;color:#666;margin:3px 0 0}
-@media(max-width:760px){.canvas{min-width:900px}.map-wrap{overflow:auto}.role-note{display:none}.intro{grid-template-columns:1fr}.legend{justify-content:flex-start}}
+:root{--bg:#ededed;--ink:#111;--paper:#fff;--muted:#666;--line:#9a9a9a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink)}
+.topbar{height:44px;background:#191919;color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;position:sticky;top:0;z-index:10}
+.topbar strong{font-size:11px;letter-spacing:.05em}.topbar .grow{flex:1}.topbar a{border:1px solid #666;background:#292929;color:#fff;border-radius:4px;padding:5px 8px;text-decoration:none;font-size:10px}
+.intro{max-width:1440px;margin:14px auto 8px;padding:0 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
+.intro h1{font-size:18px;margin:0 0 5px}.intro p{margin:0;color:#5c5c5c;font-size:10px;line-height:1.65;max-width:900px}
+.legend{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.legend span{font-size:9px;border:1px solid #b0b0b0;background:#fff;padding:3px 6px;white-space:nowrap}.legend .optional{border-style:dashed}
+.map-wrap{padding:6px 12px 20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.canvas{position:relative;width:1440px;height:650px;margin:0 auto;background:#fff;border:1px solid #aaa;box-shadow:0 5px 16px rgba(0,0,0,.06);overflow:hidden}
+svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{stroke:var(--line);stroke-width:1.15;fill:none}
+.node{position:absolute;width:160px;min-height:76px;background:#fff;border:1px solid #777;padding:10px 11px;color:#111;display:flex;flex-direction:column;justify-content:center;z-index:2;transform:translateX(-50%)}
+.node .id{font-size:8px;color:#888;margin-bottom:3px}.node strong{font-size:11px;line-height:1.3}.node .route{font-size:8px;color:#707070;margin-top:5px;word-break:break-all;line-height:1.35}
+.node.root{border:2px solid #111;background:#f1f1f1;width:180px;min-height:80px}.node.collection{background:#fbfbfb}.node.template{border-width:2px}.node.optional{border-style:dashed}.node.discovery{background:#f4f4f4}
+.hint{position:absolute;right:12px;top:10px;font-size:8px;color:#999}
+.role-note{position:absolute;left:40px;right:40px;bottom:24px;border-top:1px solid #bbb;padding-top:10px}
+.role-note>p{font-size:8px;color:#777;margin:0 0 8px;line-height:1.5}.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.role-box{background:#f8f8f8;border:1px solid #bbb;padding:8px 10px;min-height:58px}.role-box strong{font-size:9px}.role-box p{font-size:8px;line-height:1.45;color:#666;margin:4px 0 0}
+@media(max-width:760px){.intro{grid-template-columns:1fr}.legend{justify-content:flex-start}.canvas{margin-left:0}.map-wrap{padding-left:8px;padding-right:8px}}
 </style>
 </head>
 <body>
@@ -44,10 +54,16 @@ const nodes=[
 {id:'P10',route:'/pages/shipping',name:'Shipping & Delivery',type:'fixed',parent:'P09'},
 {id:'P11',route:'/pages/returns',name:'Returns / Refunds',type:'fixed',parent:'P09'}
 ];
-const positions={P01:[50,22],P02:[10,128],P06:[28,128],P08:[46,128],P09:[64,128],P12:[84,128],P03:[3.5,258],P04:[11.5,258],P05:[19.5,258],P07:[27.5,258],P10:[60,258],P11:[68,258]};
+const positions={
+P01:[720,34],
+P02:[150,170],P06:[410,170],P08:[670,170],P09:[960,170],P12:[1250,170],
+P03:[90,335],P04:[275,335],P05:[460,335],P07:[645,335],P10:[900,335],P11:[1085,335]
+};
 const host=document.getElementById('nodes');
-function renderNodes(){host.innerHTML=nodes.map(n=>{const [x,y]=positions[n.id];let cls='node';if(n.id==='P01')cls+=' root';if(n.type==='collection')cls+=' collection';if(n.type==='template')cls+=' template';if(n.type==='optional')cls+=' optional';if(n.type==='discovery')cls+=' discovery';return `<div class="${cls}" id="${n.id}" style="left:${x}%;top:${y}px"><span class="id">${n.id}</span><strong>${n.name}</strong><span class="route">${n.route}</span></div>`}).join('')}
-function centerBottom(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop+el.offsetHeight]}function centerTop(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop]}function pathTree(a,b){const [x1,y1]=centerBottom(a),[x2,y2]=centerTop(b),mid=(y1+y2)/2;return `M${x1},${y1} V${mid} H${x2} V${y2}`}
+function renderNodes(){host.innerHTML=nodes.map(n=>{const [x,y]=positions[n.id];let cls='node';if(n.id==='P01')cls+=' root';if(n.type==='collection')cls+=' collection';if(n.type==='template')cls+=' template';if(n.type==='optional')cls+=' optional';if(n.type==='discovery')cls+=' discovery';return `<div class="${cls}" id="${n.id}" style="left:${x}px;top:${y}px"><span class="id">${n.id}</span><strong>${n.name}</strong><span class="route">${n.route}</span></div>`}).join('')}
+function centerBottom(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop+el.offsetHeight]}
+function centerTop(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop]}
+function pathTree(a,b){const [x1,y1]=centerBottom(a),[x2,y2]=centerTop(b),mid=Math.round((y1+y2)/2);return `M${x1},${y1} V${mid} H${x2} V${y2}`}
 function renderLines(){const tree=document.getElementById('treeLines');tree.innerHTML='';nodes.filter(n=>n.parent).forEach(n=>tree.insertAdjacentHTML('beforeend',`<path class="tree" d="${pathTree(document.getElementById(n.parent),document.getElementById(n.id))}"/>`))}
 renderNodes();requestAnimationFrame(renderLines);window.addEventListener('resize',()=>requestAnimationFrame(renderLines));
 </script>
