@@ -60,9 +60,17 @@ P02:[150,170],P06:[410,170],P08:[670,170],P09:[960,170],P12:[1250,170],
 P03:[90,335],P04:[275,335],P05:[460,335],P07:[645,335],P10:[900,335],P11:[1085,335]
 };
 const host=document.getElementById('nodes');
+const canvas=document.getElementById('canvas');
 function renderNodes(){host.innerHTML=nodes.map(n=>{const [x,y]=positions[n.id];let cls='node';if(n.id==='P01')cls+=' root';if(n.type==='collection')cls+=' collection';if(n.type==='template')cls+=' template';if(n.type==='optional')cls+=' optional';if(n.type==='discovery')cls+=' discovery';return `<div class="${cls}" id="${n.id}" style="left:${x}px;top:${y}px"><span class="id">${n.id}</span><strong>${n.name}</strong><span class="route">${n.route}</span></div>`}).join('')}
-function centerBottom(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop+el.offsetHeight]}
-function centerTop(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop]}
+function boxPoint(el,edge){
+  const r=el.getBoundingClientRect();
+  const c=canvas.getBoundingClientRect();
+  const x=r.left-c.left+r.width/2;
+  const y=edge==='bottom' ? r.bottom-c.top : r.top-c.top;
+  return [x,y];
+}
+function centerBottom(el){return boxPoint(el,'bottom')}
+function centerTop(el){return boxPoint(el,'top')}
 function pathTree(a,b){const [x1,y1]=centerBottom(a),[x2,y2]=centerTop(b),mid=Math.round((y1+y2)/2);return `M${x1},${y1} V${mid} H${x2} V${y2}`}
 function renderLines(){const tree=document.getElementById('treeLines');tree.innerHTML='';nodes.filter(n=>n.parent).forEach(n=>tree.insertAdjacentHTML('beforeend',`<path class="tree" d="${pathTree(document.getElementById(n.parent),document.getElementById(n.id))}"/>`))}
 renderNodes();requestAnimationFrame(renderLines);window.addEventListener('resize',()=>requestAnimationFrame(renderLines));
