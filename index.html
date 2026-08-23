@@ -10,11 +10,11 @@
 html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink)}
 .topbar{height:44px;background:#191919;color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;position:sticky;top:0;z-index:10}
 .topbar strong{font-size:11px;letter-spacing:.05em}.topbar .grow{flex:1}.topbar a{border:1px solid #666;background:#292929;color:#fff;border-radius:4px;padding:5px 8px;text-decoration:none;font-size:10px}
-.intro{max-width:1440px;margin:14px auto 8px;padding:0 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
+.intro{max-width:1640px;margin:14px auto 8px;padding:0 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
 .intro h1{font-size:18px;margin:0 0 5px}.intro p{margin:0;color:#5c5c5c;font-size:10px;line-height:1.65;max-width:900px}
 .legend{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.legend span{font-size:9px;border:1px solid #b0b0b0;background:#fff;padding:3px 6px;white-space:nowrap}.legend .optional{border-style:dashed}
 .map-wrap{padding:6px 12px 20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.canvas{position:relative;width:1440px;height:650px;margin:0 auto;background:#fff;border:1px solid #aaa;box-shadow:0 5px 16px rgba(0,0,0,.06);overflow:hidden}
+.canvas{position:relative;width:1640px;height:650px;margin:0 auto;background:#fff;border:1px solid #aaa;box-shadow:0 5px 16px rgba(0,0,0,.06);overflow:hidden}
 svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{stroke:var(--line);stroke-width:1.15;fill:none}
 .node{position:absolute;width:160px;min-height:76px;background:#fff;border:1px solid #777;padding:10px 11px;color:#111;display:flex;flex-direction:column;justify-content:center;z-index:2;transform:translateX(-50%)}
 .node .id{font-size:8px;color:#888;margin-bottom:3px}.node strong{font-size:11px;line-height:1.3}.node .route{font-size:8px;color:#707070;margin-top:5px;word-break:break-all;line-height:1.35}
@@ -33,7 +33,7 @@ svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{s
 </div>
 <div class="map-wrap"><div class="canvas" id="canvas">
 <div class="hint">current proposal: 12 nodes</div><svg id="svg"><g id="treeLines"></g></svg><div id="nodes"></div>
-<div class="role-note"><p>※ 実際の回遊は階層だけでなく、Home → In Use → Collection / Product Detail、PDP → In Use / 他PDP、Why AUX → In Use のように相互接続します。</p><div class="role-grid">
+<div class="role-note"><p>※ FAQ / Shipping / Returns / Contact は同列の実務ページとして扱います。実際の回遊は階層だけでなく、Home → In Use → Collection / Product Detail、PDP → In Use / 他PDP、Why AUX → In Use のように相互接続します。</p><div class="role-grid">
 <div class="role-box"><strong>商品探索</strong><p>Shop All / COOK / SERVE / TABLE</p></div>
 <div class="role-box"><strong>使用シーンの発見</strong><p>In Use — See What AUX Can Do</p></div>
 <div class="role-box"><strong>購入・商品理解</strong><p>Product Detail：機能・比較・使用価値</p></div>
@@ -46,18 +46,18 @@ const nodes=[
 {id:'P06',route:'/pages/in-use',name:'In Use',type:'discovery',parent:'P01'},
 {id:'P08',route:'/pages/why-aux',name:'Why AUX（仮称）',type:'optional',parent:'P01'},
 {id:'P09',route:'/pages/faq',name:'FAQ',type:'fixed',parent:'P01'},
+{id:'P10',route:'/pages/shipping',name:'Shipping & Delivery',type:'fixed',parent:'P01'},
+{id:'P11',route:'/pages/returns',name:'Returns / Refunds',type:'fixed',parent:'P01'},
 {id:'P12',route:'/pages/contact',name:'Contact',type:'fixed',parent:'P01'},
 {id:'P03',route:'/collections/cook',name:'COOK',type:'collection',parent:'P02'},
 {id:'P04',route:'/collections/serve',name:'SERVE',type:'collection',parent:'P02'},
 {id:'P05',route:'/collections/table',name:'TABLE',type:'collection',parent:'P02'},
-{id:'P07',route:'/products/{handle}',name:'Product Detail Template',type:'template',parent:'P02'},
-{id:'P10',route:'/pages/shipping',name:'Shipping & Delivery',type:'fixed',parent:'P09'},
-{id:'P11',route:'/pages/returns',name:'Returns / Refunds',type:'fixed',parent:'P09'}
+{id:'P07',route:'/products/{handle}',name:'Product Detail Template',type:'template',parent:'P02'}
 ];
 const positions={
-P01:[720,34],
-P02:[150,170],P06:[410,170],P08:[670,170],P09:[960,170],P12:[1250,170],
-P03:[90,335],P04:[275,335],P05:[460,335],P07:[645,335],P10:[900,335],P11:[1085,335]
+P01:[820,34],
+P02:[130,170],P06:[360,170],P08:[590,170],P09:[820,170],P10:[1050,170],P11:[1280,170],P12:[1510,170],
+P03:[100,335],P04:[285,335],P05:[470,335],P07:[655,335]
 };
 const host=document.getElementById('nodes');
 const canvas=document.getElementById('canvas');
