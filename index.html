@@ -23,20 +23,20 @@ svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{s
 <body>
 <div class="topbar"><strong>AUX USA / SITE STRUCTURE MAP</strong><span class="grow"></span><a href="https://docs.google.com/spreadsheets/d/11EVl4dfFN_Dx4SsW7xgJE2t3Y1gtvtlqyOAlhqadT-I/edit" target="_blank" rel="noopener">サイト方針シート</a></div>
 <div class="intro">
-  <div><h1>サイト全体像 / 初期サイトマップ</h1><p>2026-08-24時点の制作案。実線は情報階層の親子関係を表し、実際の回遊導線はサイト方針シート「内部導線」で管理します。販売戦略の追加提案領域はFutureとして分離しています。</p></div>
-  <div class="legend"><span>必須 / 推奨</span><span>Collection</span><span>商品テンプレ：太枠</span><span class="optional">要確認：破線</span><span class="future">Future：グレー</span></div>
+  <div><h1>サイト全体像 / 初期サイトマップ</h1><p>2026-08-24時点の制作案。実線は情報階層の親子関係を表し、実際の回遊導線はサイト方針シート「内部導線」で管理します。田中さんの販売戦略PART IIは今回の提案では保留し、別枠で表示しています。</p></div>
+  <div class="legend"><span>必須 / 推奨</span><span>Collection</span><span>商品テンプレ：太枠</span><span class="optional">要確認：破線</span><span class="future">販売戦略・今回保留：グレー</span></div>
 </div>
 <div class="map-wrap"><div class="canvas" id="canvas">
-<div class="hint">current: 14 structure nodes + 2 future</div>
+<div class="hint">current: 14 structure nodes + 1 deferred sales-strategy node</div>
 <svg id="svg"><g id="treeLines"></g></svg>
 <div id="nodes"></div>
-<div class="scope-note"><strong>Future / 今回の追加提案対象外</strong>　For Professionals・AI Quote、Journal / Guide は将来拡張として保持。今回の8/25提案ではブランド戦略をShopify ECへ翻訳する範囲を優先。</div>
+<div class="scope-note"><strong>販売戦略 / 今回は提案保留</strong>　For Professionals → Request Samples / Get a Quote → AI見積は田中さんのPART IIにある構想。削除ではなく、「販売戦略はこのタイミングで提案しない」という方針に合わせて今回のShopify制作案から分離しています。</div>
 <div class="role-note">
   <p>※ 下記はユーザーの移動順ではなく、各ページ群の主な役割です。</p>
   <div class="role-grid">
     <div class="role-box"><strong>商品発見・比較</strong><p>Shop All / COOK / SERVE / TABLE / Product Detail</p></div>
-    <div class="role-box"><strong>ブランド理解・証拠</strong><p>Why AUX / Engineering in Tsubame-Sanjo</p></div>
-    <div class="role-box"><strong>新しい用途の教育</strong><p>TABLE / The Third Utensil ※採否確認中</p></div>
+    <div class="role-box"><strong>ブランド理解・根拠</strong><p>Why AUX / Engineering in Tsubame-Sanjo</p></div>
+    <div class="role-box"><strong>新しい用途の説明</strong><p>TABLE / The Third Utensil ※採否確認中</p></div>
     <div class="role-box"><strong>購入前不安の解消</strong><p>FAQ / Shipping / Returns / Contact</p></div>
   </div>
 </div>
@@ -57,14 +57,13 @@ const nodes=[
 {id:'P09',route:'/pages/the-third-utensil',name:'The Third Utensil',type:'optional',parent:'P05'},
 {id:'P11',route:'/pages/shipping',name:'Shipping & Delivery',type:'fixed',parent:'P10'},
 {id:'P12',route:'/pages/returns',name:'Returns / Refunds',type:'fixed',parent:'P10'},
-{id:'F01',route:'/pages/for-professionals',name:'For Professionals / AI Quote',type:'future',parent:'P01'},
-{id:'F02',route:'/blogs/journal',name:'Journal / Guide',type:'future',parent:'P01'}
+{id:'F01',route:'/pages/for-professionals',name:'For Professionals / Quote / AI見積',type:'future',parent:'P01'}
 ];
 const positions={
 P01:[50,22],
 P02:[12,128],P07:[31,128],P10:[50,128],P13:[69,128],P14:[88,128],
 P03:[4.5,252],P04:[13.5,252],P05:[22.5,252],P06:[31.5,252],P08:[40.5,252],P11:[49.5,252],P12:[58.5,252],P09:[22.5,372],
-F01:[74,390],F02:[88,390]
+F01:[82,390]
 };
 const host=document.getElementById('nodes');
 function renderNodes(){host.innerHTML=nodes.map(n=>{const [x,y]=positions[n.id];let cls='node';if(n.id==='P01')cls+=' root';if(n.type==='collection')cls+=' collection';if(n.type==='template')cls+=' template';if(n.type==='optional')cls+=' optional';if(n.type==='future')cls+=' future';return `<div class="${cls}" id="${n.id}" style="left:${x}%;top:${y}px"><span class="id">${n.id}</span><strong>${n.name}</strong><span class="route">${n.route}</span></div>`}).join('');}
