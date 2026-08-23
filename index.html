@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUX USA Site Map</title>
+<style>
+:root{--bg:#ededed;--ink:#111;--line:#8d8d8d;--paper:#fff;--soft:#f6f6f6;--muted:#666;--future:#e8e8e8}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink)}
+.topbar{height:42px;background:#191919;color:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;position:sticky;top:0;z-index:10}
+.topbar strong{font-size:11px;letter-spacing:.05em}.topbar .grow{flex:1}.topbar a{border:1px solid #666;background:#292929;color:#fff;border-radius:4px;padding:5px 8px;text-decoration:none;font-size:10px;line-height:1}
+.intro{max-width:1180px;margin:12px auto 6px;padding:0 10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}.intro h1{font-size:18px;line-height:1.2;margin:0 0 4px}.intro p{margin:0;color:#5c5c5c;font-size:10px;line-height:1.55}.legend{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.legend span{font-size:9px;border:1px solid #b0b0b0;background:#fff;padding:3px 5px;white-space:nowrap}.legend .optional{border-style:dashed}.legend .future{background:#eee;color:#777}
+.map-wrap{padding:6px 10px 16px}.canvas{position:relative;width:min(1180px,100%);height:665px;margin:0 auto;background:#fff;border:1px solid #aaa;box-shadow:0 5px 16px rgba(0,0,0,.06);overflow:hidden}
+svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.tree{stroke:#8a8a8a;stroke-width:1.1;fill:none}.tree.future-line{stroke:#bbb;stroke-dasharray:4 4}
+.node{position:absolute;width:122px;min-height:64px;background:#fff;border:1px solid #777;padding:8px 9px;color:#111;display:flex;flex-direction:column;justify-content:center;z-index:2;transform:translateX(-50%)}.node .id{font-size:8px;color:#888;margin-bottom:2px}.node strong{font-size:10px;line-height:1.25}.node .route{font-size:8px;color:#707070;margin-top:4px;word-break:break-all}.node.root{border:2px solid #111;background:#f1f1f1;width:148px;min-height:70px}.node.collection{background:#fbfbfb}.node.template{border-width:2px}.node.optional{border-style:dashed}.node.future{background:#eee;border-color:#aaa;color:#777;border-style:dashed}.node.future .route,.node.future .id{color:#999}.hint{position:absolute;right:8px;top:7px;font-size:8px;color:#999}
+.role-note{position:absolute;left:3.2%;right:3.2%;bottom:12px;border-top:1px solid #bbb;padding-top:8px}.role-note>p{font-size:8px;color:#777;margin:0 0 6px}.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.role-box{background:#f8f8f8;border:1px solid #bbb;padding:7px 8px;min-height:52px}.role-box strong{font-size:9px}.role-box p{font-size:8px;line-height:1.4;color:#666;margin:3px 0 0}
+.scope-note{position:absolute;left:3.2%;right:3.2%;top:483px;border-top:1px dashed #c1c1c1;padding-top:8px;font-size:8px;color:#888}.scope-note strong{color:#666}
+@media(max-width:1050px){.canvas{height:650px}.node{width:108px;min-height:60px;padding:7px}.node.root{width:132px}.node strong{font-size:9px}.node .route{font-size:7.5px}.role-box p{display:none}.role-box{min-height:auto}.intro{grid-template-columns:1fr}.legend{justify-content:flex-start}}
+@media(max-width:760px){.topbar strong{display:none}.intro h1{font-size:16px}.intro p{font-size:9px}.canvas{min-width:900px}.map-wrap{overflow:auto}.role-note{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><strong>AUX USA / SITE STRUCTURE MAP</strong><span class="grow"></span><a href="https://docs.google.com/spreadsheets/d/11EVl4dfFN_Dx4SsW7xgJE2t3Y1gtvtlqyOAlhqadT-I/edit" target="_blank" rel="noopener">サイト方針シート</a></div>
+<div class="intro">
+  <div><h1>サイト全体像 / 初期サイトマップ</h1><p>2026-08-24時点の制作案。実線は情報階層の親子関係を表し、実際の回遊導線はサイト方針シート「内部導線」で管理します。販売戦略の追加提案領域はFutureとして分離しています。</p></div>
+  <div class="legend"><span>必須 / 推奨</span><span>Collection</span><span>商品テンプレ：太枠</span><span class="optional">要確認：破線</span><span class="future">Future：グレー</span></div>
+</div>
+<div class="map-wrap"><div class="canvas" id="canvas">
+<div class="hint">current: 14 structure nodes + 2 future</div>
+<svg id="svg"><g id="treeLines"></g></svg>
+<div id="nodes"></div>
+<div class="scope-note"><strong>Future / 今回の追加提案対象外</strong>　For Professionals・AI Quote、Journal / Guide は将来拡張として保持。今回の8/25提案ではブランド戦略をShopify ECへ翻訳する範囲を優先。</div>
+<div class="role-note">
+  <p>※ 下記はユーザーの移動順ではなく、各ページ群の主な役割です。</p>
+  <div class="role-grid">
+    <div class="role-box"><strong>商品発見・比較</strong><p>Shop All / COOK / SERVE / TABLE / Product Detail</p></div>
+    <div class="role-box"><strong>ブランド理解・証拠</strong><p>Why AUX / Engineering in Tsubame-Sanjo</p></div>
+    <div class="role-box"><strong>新しい用途の教育</strong><p>TABLE / The Third Utensil ※採否確認中</p></div>
+    <div class="role-box"><strong>購入前不安の解消</strong><p>FAQ / Shipping / Returns / Contact</p></div>
+  </div>
+</div>
+</div></div>
+<script>
+const nodes=[
+{id:'P01',route:'/',name:'Home',type:'fixed',parent:null},
+{id:'P02',route:'/collections/all',name:'Shop All',type:'collection',parent:'P01'},
+{id:'P07',route:'/pages/why-aux',name:'Why AUX',type:'fixed',parent:'P01'},
+{id:'P10',route:'/pages/faq',name:'FAQ',type:'fixed',parent:'P01'},
+{id:'P13',route:'/pages/about',name:'About / Company',type:'fixed',parent:'P01'},
+{id:'P14',route:'/pages/contact',name:'Contact',type:'fixed',parent:'P01'},
+{id:'P03',route:'/collections/cook',name:'COOK',type:'collection',parent:'P02'},
+{id:'P04',route:'/collections/serve',name:'SERVE',type:'collection',parent:'P02'},
+{id:'P05',route:'/collections/table',name:'TABLE',type:'collection',parent:'P02'},
+{id:'P06',route:'/products/{handle}',name:'Product Detail Template',type:'template',parent:'P02'},
+{id:'P08',route:'/pages/engineering',name:'Engineering in Tsubame-Sanjo',type:'fixed',parent:'P07'},
+{id:'P09',route:'/pages/the-third-utensil',name:'The Third Utensil',type:'optional',parent:'P05'},
+{id:'P11',route:'/pages/shipping',name:'Shipping & Delivery',type:'fixed',parent:'P10'},
+{id:'P12',route:'/pages/returns',name:'Returns / Refunds',type:'fixed',parent:'P10'},
+{id:'F01',route:'/pages/for-professionals',name:'For Professionals / AI Quote',type:'future',parent:'P01'},
+{id:'F02',route:'/blogs/journal',name:'Journal / Guide',type:'future',parent:'P01'}
+];
+const positions={
+P01:[50,22],
+P02:[12,128],P07:[31,128],P10:[50,128],P13:[69,128],P14:[88,128],
+P03:[4.5,252],P04:[13.5,252],P05:[22.5,252],P06:[31.5,252],P08:[40.5,252],P11:[49.5,252],P12:[58.5,252],P09:[22.5,372],
+F01:[74,390],F02:[88,390]
+};
+const host=document.getElementById('nodes');
+function renderNodes(){host.innerHTML=nodes.map(n=>{const [x,y]=positions[n.id];let cls='node';if(n.id==='P01')cls+=' root';if(n.type==='collection')cls+=' collection';if(n.type==='template')cls+=' template';if(n.type==='optional')cls+=' optional';if(n.type==='future')cls+=' future';return `<div class="${cls}" id="${n.id}" style="left:${x}%;top:${y}px"><span class="id">${n.id}</span><strong>${n.name}</strong><span class="route">${n.route}</span></div>`}).join('');}
+function centerBottom(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop+el.offsetHeight]}
+function centerTop(el){return [el.offsetLeft+el.offsetWidth/2,el.offsetTop]}
+function pathTree(a,b){const [x1,y1]=centerBottom(a),[x2,y2]=centerTop(b),mid=(y1+y2)/2;return `M${x1},${y1} V${mid} H${x2} V${y2}`}
+function renderLines(){
+ const tree=document.getElementById('treeLines');tree.innerHTML='';
+ nodes.filter(n=>n.parent).forEach(n=>{const cls=n.type==='future'?'tree future-line':'tree';tree.insertAdjacentHTML('beforeend',`<path class="${cls}" d="${pathTree(document.getElementById(n.parent),document.getElementById(n.id))}"/>`)});
+}
+renderNodes();requestAnimationFrame(renderLines);window.addEventListener('resize',()=>requestAnimationFrame(renderLines));
+</script>
+</body></html>
