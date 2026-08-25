@@ -1,22 +1,25 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AUX USA / Visual Wireframe</title>
+<title>AUX USA / Visual Wireframe / EN</title>
 <link rel="stylesheet" href="wf-base.css" />
 <link rel="stylesheet" href="wf-components.css" />
 <link rel="stylesheet" href="wf-strategy-fixes.css" />
+<style>
+  .ja-note{display:none!important}
+</style>
 </head>
 <body>
 <div class="app" id="app">
   <div class="toolbar">
-    <strong>AUX USA / VISUAL WIREFRAME</strong>
-    <button class="toolbtn" id="sideToggle">左メニューを閉じる</button>
-    <button class="toolbtn" id="metaToggle">構成メモを表示</button>
-    <a class="toolbtn" href="index.html" style="text-decoration:none">サイトマップ</a>
+    <strong>AUX USA / VISUAL WIREFRAME / EN</strong>
+    <button class="toolbtn" id="sideToggle">Hide navigation</button>
+    <button class="toolbtn" id="metaToggle">Show working notes</button>
+    <a class="toolbtn" href="index.html" style="text-decoration:none">Sitemap</a>
     <span class="grow"></span>
-    <span style="font-size:9px;color:#aaa">Visual fidelity: 35–50% / UI palette: Base + Main + Accent</span>
+    <span style="font-size:9px;color:#aaa">Visual wireframe / content + UX + photography direction / not final UI</span>
   </div>
   <div class="layout" id="layout">
     <aside class="sidebar">
@@ -33,5 +36,6 @@
 <script src="wf-4.js"></script>
 <script src="wf-5.js"></script>
 <script src="wf-6.js"></script>
+<script src="wf-en-overrides.js"></script>
 </body>
 </html>
