@@ -1,0 +1,226 @@
+/* AUX USA / Design Foundation v0.1
+   Shared visual system only. Page order, IA and page-specific special layouts remain provisional. */
+
+:root{
+  --content-max:1280px;
+  --gutter-min:32px;
+  --gutter-fluid:5vw;
+  --gutter-max:80px;
+
+  --section-y:112px;
+  --section-y-compact:72px;
+
+  --text:#151515;
+  --text-muted:#666963;
+  --border:#d9dad6;
+  --surface:#ffffff;
+  --surface-soft:#eef2ef;
+
+  --radius-ui:2px;
+  --radius-card:0px;
+}
+
+body{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text);
+}
+
+/* Container / section rhythm */
+.section{
+  padding-block:var(--section-y);
+  padding-inline:max(clamp(var(--gutter-min),var(--gutter-fluid),var(--gutter-max)),calc((100% - var(--content-max))/2));
+}
+
+.section.compact{
+  padding-block:var(--section-y-compact);
+}
+
+/* Typography: Working English is the sizing reference. Font family is still provisional. */
+.h1{
+  font-size:64px;
+  line-height:1.02;
+  letter-spacing:-.035em;
+  max-width:900px;
+}
+
+.h2{
+  font-size:42px;
+  line-height:1.1;
+  letter-spacing:-.025em;
+}
+
+.h3{
+  font-size:25px;
+  line-height:1.2;
+}
+
+.lead{
+  font-size:15px;
+  line-height:1.65;
+  color:var(--text-muted);
+  max-width:620px;
+  margin-top:20px;
+}
+
+.eyebrow{
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.14em;
+  margin-bottom:14px;
+}
+
+.tiny,
+.caption{
+  font-size:11px;
+  line-height:1.55;
+}
+
+/* Commerce / utility text */
+.globalnav{
+  font-size:11px;
+}
+
+.actions{
+  font-size:11px;
+}
+
+.btn{
+  min-height:44px;
+  padding:12px 18px;
+  font-size:12px;
+  line-height:1.2;
+  border-color:#242424;
+  border-radius:var(--radius-ui);
+}
+
+.add{
+  min-height:48px;
+  padding:14px 18px;
+  font-size:12px;
+  letter-spacing:.02em;
+}
+
+.qty{
+  min-height:42px;
+  align-items:center;
+  font-size:12px;
+}
+
+.product-name{
+  font-size:18px;
+  line-height:1.25;
+  margin-top:14px;
+}
+
+.product-sub{
+  font-size:11.5px;
+  line-height:1.5;
+  color:var(--text-muted);
+  margin-top:5px;
+}
+
+.price{
+  font-size:12px;
+  line-height:1.4;
+  margin-top:7px;
+}
+
+.price-big{
+  font-size:18px;
+  line-height:1.4;
+}
+
+.buybox .lead{
+  font-size:14px!important;
+  line-height:1.6;
+}
+
+.purchase-assurance b{
+  font-size:10.5px;
+}
+
+.purchase-assurance span{
+  font-size:10px;
+  line-height:1.45;
+}
+
+.buybox .review-jump,
+.buybox .compare-jump{
+  font-size:11px;
+}
+
+/* Repeated descriptive text should not fall below a practical reading size. */
+.cat p,
+.shop-category p,
+.collection-benefit p,
+.proof p,
+.precision-card p,
+.evidence-card>p,
+.home-use-row-copy p,
+.pdp-use-copy p,
+.pdp-value-copy p,
+.pdp-proof-copy p,
+.pdp-proof-main-copy p,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy p,
+.review-placeholder p,
+.review-overview p,
+.pdp-compare-cell,
+.use-jump p,
+.micro,
+.footer-col span,
+.site-footer p{
+  font-size:11.5px;
+  line-height:1.55;
+}
+
+.use-link{
+  font-size:10.5px;
+}
+
+/* Visual grammar */
+.product-card,
+.home-use-feature,
+.home-use-row,
+.pdp-use-card,
+.pdp-value-card,
+.pdp-proof-item,
+.pdp-proof-layout.equalized .pdp-proof-equal-card,
+.precision-card,
+.evidence-card,
+.compare-card{
+  border-color:var(--border);
+  border-radius:var(--radius-card);
+}
+
+.site-header{
+  min-height:76px;
+  height:auto;
+  padding-block:18px;
+}
+
+.site-footer{
+  padding-inline:max(clamp(var(--gutter-min),var(--gutter-fluid),var(--gutter-max)),calc((100% - var(--content-max))/2));
+}
+
+@media(max-width:1100px){
+  :root{
+    --section-y:88px;
+    --section-y-compact:60px;
+  }
+  .h1{font-size:54px}
+  .h2{font-size:38px}
+}
+
+@media(max-width:760px){
+  :root{
+    --gutter-min:22px;
+    --section-y:68px;
+    --section-y-compact:48px;
+  }
+  body{font-size:14px}
+  .h1{font-size:42px;line-height:1.06}
+  .h2{font-size:32px;line-height:1.12}
+  .h3{font-size:22px}
+  .lead{font-size:14px}
+}
