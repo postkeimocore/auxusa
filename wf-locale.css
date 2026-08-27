@@ -1,0 +1,2 @@
+.locale-switch{display:flex;align-items:center;gap:4px;padding:2px;border:1px solid #444;border-radius:5px;background:#202020}.locale-switch .toolbtn{border:0;border-radius:3px;padding:5px 9px;background:transparent;color:#aaa}.locale-switch .toolbtn:hover{background:#303030;color:#fff}.locale-switch .toolbtn.active{background:#fff;color:#111}
+html[lang="ja"] .display{font-family:var(--sans);letter-spacing:-.035em}.toolbar .locale-switch{flex:0 0 auto}
