@@ -1,0 +1,94 @@
+/* True-size Preview Mode
+   Review-only chrome is removed while the site wireframe keeps its native CSS px sizes. */
+
+.preview-only{display:none}
+
+body.preview-mode{
+  background:#fff;
+  overflow-x:hidden;
+}
+
+body.preview-mode .app{
+  min-height:100vh;
+}
+
+body.preview-mode .toolbar,
+body.preview-mode .sidebar,
+body.preview-mode .browser-chrome,
+body.preview-mode .page-meta,
+body.preview-mode .ref,
+body.preview-mode .photo-label,
+body.preview-mode .ja-note{
+  display:none!important;
+}
+
+body.preview-mode .layout,
+body.preview-mode .layout.side-collapsed{
+  display:block;
+  min-height:100vh;
+}
+
+body.preview-mode .workspace,
+body.preview-mode .side-collapsed .workspace{
+  width:100vw;
+  min-width:0;
+  padding:0;
+  overflow:visible;
+}
+
+body.preview-mode .browser{
+  width:100vw;
+  max-width:none;
+  min-width:0;
+  margin:0;
+  border:0;
+  box-shadow:none;
+  background:#fff;
+}
+
+body.preview-mode .preview-only{
+  display:flex;
+}
+
+.preview-dock{
+  position:fixed;
+  z-index:1000;
+  right:16px;
+  top:16px;
+  align-items:center;
+  gap:8px;
+  padding:6px;
+  border:1px solid rgba(0,0,0,.14);
+  background:rgba(255,255,255,.94);
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  backdrop-filter:blur(8px);
+}
+
+.preview-dock button{
+  border:1px solid #d2d2cf;
+  background:#fff;
+  min-height:30px;
+  padding:5px 9px;
+  font-size:10px;
+  cursor:pointer;
+}
+
+.preview-dock button:hover{
+  border-color:#999;
+}
+
+.preview-dock .preview-page-status{
+  min-width:72px;
+  padding:0 4px;
+  font-size:9px;
+  color:#6f716e;
+  text-align:center;
+  white-space:nowrap;
+}
+
+@media (max-width:760px){
+  .preview-dock{
+    right:8px;
+    top:8px;
+  }
+}
