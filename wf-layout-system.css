@@ -1,0 +1,233 @@
+/* AUX USA / Layout & Proximity System v1.0
+   Companion to wf-design-foundation.css.
+
+   Owns geometry, grouping and alignment only:
+   - strict 8px spatial grid
+   - semantic proximity (same group < action < next component)
+   - exact desktop column math at 1280 / 1440
+   - repeated component spacing across marketing / commerce pages
+   - support pages remain simpler and document-like
+*/
+
+:root{
+  --section-y:96px;
+  --section-y-compact:72px;
+  --proximity-tight:8px;
+  --proximity-related:16px;
+  --proximity-action:24px;
+  --proximity-component:40px;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL PROXIMITY / RESET
+   -------------------------------------------------------------------------- */
+.section{padding-block:var(--section-y)}
+.section.compact{padding-block:var(--section-y-compact)}
+
+/* Browser paragraph defaults were creating page-by-page spacing drift. */
+.page p{margin-block:0}
+
+.eyebrow{margin-bottom:var(--proximity-tight)!important}
+.h1 + .lead,
+.h2 + .lead,
+.h3 + .lead,
+.brand-intro .h2 + .lead,
+.pdp-explore-band .h2 + .lead{
+  margin-top:var(--proximity-related)!important;
+}
+
+/* Existing render markup is still provisional, so apply the shared action gap
+   structurally rather than allowing local 22/26/28px margins to win. */
+.product-hero-panel .lead + .row,
+.home-precision-copy .lead + .row,
+.section.dark .lead + .row,
+.pdp-brand-copy .lead + .row,
+.pdp-explore-band .lead + .row,
+.brand-intro .lead + .row,
+.brand-intro > .product-strip + .row{
+  margin-top:var(--proximity-action)!important;
+}
+
+.brand-intro{max-width:848px}
+.pdp-use-head{gap:32px!important;align-items:flex-end}
+
+/* --------------------------------------------------------------------------
+   CARD ANATOMY
+   8px label/title/body grouping; 24/32px container padding is inherited from
+   the Design Foundation and kept consistent by component role.
+   -------------------------------------------------------------------------- */
+.home-use-copy .eyebrow,
+.home-use-row-copy .eyebrow,
+.pdp-value-copy .eyebrow,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy>.eyebrow,
+.pdp-use-copy .eyebrow,
+.use-jump .eyebrow{
+  margin-bottom:var(--proximity-tight)!important;
+}
+
+.home-use-copy .h3 + .lead,
+.home-use-row-copy .h3 + p,
+.pdp-value-copy .h3 + p,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy .h3 + p,
+.pdp-use-copy .h3 + p,
+.use-jump .h3 + p,
+.proof b + p,
+.shop-category b + p,
+.evidence-card>b + p,
+.precision-card b + p,
+.review-placeholder b + p{
+  margin-top:var(--proximity-tight)!important;
+}
+
+/* Category benefit is one shared compact information-card component. */
+.collection-benefits{
+  margin-top:var(--proximity-component)!important;
+  gap:16px!important;
+  background:transparent!important;
+  border:0!important;
+}
+.collection-benefit{
+  padding:24px!important;
+  border:1px solid var(--border);
+}
+.collection-benefit>b + .h3{
+  margin-top:16px!important;
+  margin-bottom:0!important;
+  font-size:var(--fs-card-title)!important;
+  line-height:var(--lh-card-title)!important;
+}
+.collection-benefit .h3 + p{margin-top:8px!important}
+.collection-copy .lead + .tiny,
+.section.compact > .lead + .tiny{display:block;margin-top:16px!important}
+
+/* Product card copy is one tight group below media. */
+.product-name{margin-top:16px!important}
+.product-sub{margin-top:8px!important}
+.price{margin-top:8px!important}
+.product-strip{margin-top:40px!important}
+
+/* --------------------------------------------------------------------------
+   EXACT GRID MATH
+   -------------------------------------------------------------------------- */
+/* 4-up @1280: 296 x 4 + 32 x 3 = 1280 */
+.product-strip{column-gap:32px!important}
+
+/* 3-up @1280: 400 x 3 + 40 x 2 = 1280 */
+.grid-products{column-gap:40px!important;row-gap:32px!important}
+.cat-grid,
+.proof-grid,
+.pdp-value-grid,
+.pdp-proof-layout.equalized,
+.pdp-use-grid{gap:40px!important}
+
+/* 3 compact cards @1280: 416 x 3 + 16 x 2 = 1280 */
+.shop-category-row{gap:16px!important}
+
+/* 2-up situation cards @1280: 624 x 2 + 32 = 1280 */
+.use-jump-grid{gap:32px!important}
+
+/* Featured pair is a distinct component, not two items stranded in a 4-up grid. */
+.featured-two{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:896px}
+.featured-two + .filterbar{margin-top:48px!important}
+
+/* --------------------------------------------------------------------------
+   SECTION COPY -> COMPONENT SEPARATION
+   -------------------------------------------------------------------------- */
+.pdp-value-head,
+.pdp-proof-head{margin-bottom:40px!important}
+.specs,
+.pdp-compare-wrap,
+.review-shell,
+.pdp-use-grid,
+.evidence-grid,
+.precision-grid,
+.shop-category-row,
+.use-jump-grid{margin-top:40px!important}
+
+/* In Use: paragraph and related products are different information groups. */
+.use-detail-copy .related-tools{margin-top:24px!important}
+
+/* --------------------------------------------------------------------------
+   PDP FIRST VIEW / COMMERCE
+   Main image no longer consumes the whole gallery height. The thumbnail rail
+   is large enough that the next images are visibly part of the first view.
+   -------------------------------------------------------------------------- */
+.pdp-top-ux{min-height:704px}
+.pdp-gallery-ux{min-height:704px!important;padding:24px!important;gap:8px!important}
+.pdp-gallery-stage{min-height:520px!important}
+.pdp-gallery-thumbs{gap:8px!important}
+.pdp-gallery-thumb{height:128px!important}
+
+.buybox .review-jump{margin-top:16px!important;margin-bottom:0!important}
+.buybox .price-big{margin-top:16px!important;margin-bottom:0!important}
+.buybox .price-big + .lead{margin-top:16px!important}
+.buybox .tiny + .qty{margin-top:8px!important}
+.purchase-assurance{margin-top:16px!important}
+.buybox .compare-jump{margin-top:24px!important}
+
+.spec b{display:block}
+.spec b + small{margin-top:8px}
+
+/* Compare / review columns are snapped to the same 8px grid. */
+.pdp-compare-table{grid-template-columns:152px repeat(3,minmax(240px,1fr))!important}
+.pdp-compare-name{font-size:var(--fs-body)!important;line-height:var(--lh-body)!important}
+.pdp-compare-name + .tiny{margin-top:8px}
+.review-shell{grid-template-columns:256px minmax(0,1fr)!important;gap:48px!important}
+.review-placeholder{grid-template-columns:152px minmax(0,1fr)!important;gap:32px!important}
+.review-overview .stars-line{margin:8px 0!important}
+.review-overview .btn{margin-top:24px!important}
+.review-placeholder-score{line-height:56px!important}
+
+/* Same editorial split as the rest of the site: 608 + 64 + 608 = 1280. */
+.pdp-brand-trust{gap:64px!important}
+.pdp-brand-visual{min-height:432px!important}
+.pdp-explore-band .lead{margin-top:16px!important}
+
+@media(min-width:1440px){
+  .pdp-brand-trust{grid-template-columns:608px 608px!important}
+  .footer-grid{grid-template-columns:416px repeat(3,256px)!important;gap:32px!important}
+}
+
+/* --------------------------------------------------------------------------
+   WHY AUX
+   -------------------------------------------------------------------------- */
+.story-steps{margin-top:32px!important}
+.story-step{padding-block:24px!important}
+.section.dark .tiny{color:var(--on-dark-muted)!important}
+
+/* --------------------------------------------------------------------------
+   SUPPORT / POLICY
+   Document pages use fewer visual devices, but the same grouping logic.
+   -------------------------------------------------------------------------- */
+.support .h1 + .faq-item{margin-top:48px}
+.support .h1 + .lead{margin-top:16px!important}
+.support .lead + .info-table,
+.support .lead + .form{margin-top:40px!important}
+.faq-item{padding-block:24px!important}
+.faq-a{margin-top:16px!important}
+.info-row{padding-block:16px!important}
+.form{gap:16px!important}
+.field{gap:8px!important}
+
+/* Footer information groups. */
+.footer-grid{gap:32px!important}
+.footer-logo + p{margin-top:16px!important}
+.footer-col b{margin-bottom:16px!important}
+.footer-col span{margin:8px 0 0!important}
+
+@media(max-width:1100px){
+  .section{padding-block:80px}
+  .section.compact{padding-block:64px}
+}
+
+@media(max-width:760px){
+  .section{padding-block:64px}
+  .section.compact{padding-block:48px}
+  .grid-products,
+  .cat-grid,
+  .proof-grid,
+  .pdp-value-grid,
+  .pdp-proof-layout.equalized,
+  .pdp-use-grid{gap:24px!important}
+  .pdp-gallery-thumb{height:96px!important}
+}
