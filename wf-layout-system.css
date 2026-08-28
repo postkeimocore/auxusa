@@ -1,4 +1,4 @@
-/* AUX USA / Layout & Proximity System v1.0
+/* AUX USA / Layout & Proximity System v1.1
    Companion to wf-design-foundation.css.
 
    Owns geometry, grouping and alignment only:
@@ -35,6 +35,18 @@
 .pdp-explore-band .h2 + .lead{
   margin-top:var(--proximity-related)!important;
 }
+
+/* Repeated relationship components. */
+.action-row{
+  margin-top:var(--proximity-action)!important;
+  gap:16px!important;
+}
+.section-head-row{
+  justify-content:space-between!important;
+  align-items:flex-end!important;
+  gap:32px!important;
+}
+.section-head-row>div:first-child{max-width:800px}
 
 /* Existing render markup is still provisional, so apply the shared action gap
    structurally rather than allowing local 22/26/28px margins to win. */
@@ -98,7 +110,7 @@
 }
 .collection-benefit .h3 + p{margin-top:8px!important}
 .collection-copy .lead + .tiny,
-.section.compact > .lead + .tiny{display:block;margin-top:16px!important}
+.collection-note{display:block;margin-top:16px!important}
 
 /* Product card copy is one tight group below media. */
 .product-name{margin-top:16px!important}
@@ -144,7 +156,9 @@
 .shop-category-row,
 .use-jump-grid{margin-top:40px!important}
 
-/* In Use: paragraph and related products are different information groups. */
+/* In Use: editorial image is a visual group; related products are a separate
+   action group after the explanatory paragraph. */
+.inuse-editorial-hero .visualbox{min-height:520px!important}
 .use-detail-copy .related-tools{margin-top:24px!important}
 
 /* --------------------------------------------------------------------------
@@ -193,6 +207,7 @@
    -------------------------------------------------------------------------- */
 .story-steps{margin-top:32px!important}
 .story-step{padding-block:24px!important}
+.manufacturing-note{display:block;margin-top:16px!important}
 .section.dark .tiny{color:var(--on-dark-muted)!important}
 
 /* --------------------------------------------------------------------------
@@ -201,8 +216,8 @@
    -------------------------------------------------------------------------- */
 .support .h1 + .faq-item{margin-top:48px}
 .support .h1 + .lead{margin-top:16px!important}
-.support .lead + .info-table,
-.support .lead + .form{margin-top:40px!important}
+.support .info-table,
+.support .form{margin-top:40px!important}
 .faq-item{padding-block:24px!important}
 .faq-a{margin-top:16px!important}
 .info-row{padding-block:16px!important}
@@ -223,6 +238,7 @@
 @media(max-width:760px){
   .section{padding-block:64px}
   .section.compact{padding-block:48px}
+  .section-head-row{align-items:flex-start!important;flex-direction:column}
   .grid-products,
   .cat-grid,
   .proof-grid,
