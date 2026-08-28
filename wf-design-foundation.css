@@ -1,156 +1,171 @@
-/* AUX USA / Design Foundation v0.1
-   Shared visual system only. Page order, IA and page-specific special layouts remain provisional. */
+/* AUX USA / Design Foundation v1.0
+   Visual source of truth for the wireframe.
+
+   System rule:
+   - Spatial system: strict 8px grid.
+   - Typography: 4px type sub-grid with line-heights snapped to 8px.
+   - Meaningful customer-facing copy does not drop below 16px.
+   - 12px is reserved for metadata / eyebrow / tertiary labels only.
+   - Working English is the sizing reference.
+   - IA, final copy, photography and page-specific art direction remain provisional.
+
+   Reference priority:
+   1. Material Kitchen: overall editorial / commerce scale and rhythm.
+   2. OXO US: product and purchase clarity.
+   3. KINTO: photography/color treatment only, not sizing baseline.
+*/
 
 :root{
-  --content-max:1280px;
-  --gutter-min:32px;
-  --gutter-fluid:5vw;
-  --gutter-max:80px;
+  /* 8pt spatial grid */
+  --grid:8px;
+  --space-1:8px;
+  --space-2:16px;
+  --space-3:24px;
+  --space-4:32px;
+  --space-5:40px;
+  --space-6:48px;
+  --space-7:56px;
+  --space-8:64px;
+  --space-9:72px;
+  --space-10:80px;
+  --space-12:96px;
+  --space-14:112px;
+  --space-16:128px;
 
-  --section-y:112px;
-  --section-y-compact:72px;
+  /* Containers */
+  --container:1280px;
+  --container-wide:1440px;
+  --text-measure:640px;
+  --page-gutter:80px;
 
+  /* Typography / 4px sub-grid, 8px vertical rhythm */
+  --fs-meta:12px;
+  --lh-meta:16px;
+  --fs-body:16px;
+  --lh-body:24px;
+  --fs-lead:20px;
+  --lh-lead:32px;
+  --fs-h3:24px;
+  --lh-h3:32px;
+  --fs-h2:48px;
+  --lh-h2:56px;
+  --fs-h1:64px;
+  --lh-h1:64px;
+
+  --tracking-display:-.025em;
+  --tracking-heading:-.018em;
+  --tracking-body:0;
+  --tracking-ui:.02em;
+  --tracking-eyebrow:.12em;
+
+  /* Color / surface */
   --text:#151515;
-  --text-muted:#666963;
+  --text-muted:#5f625e;
   --border:#d9dad6;
   --surface:#ffffff;
   --surface-soft:#eef2ef;
 
-  --radius-ui:2px;
+  /* Quiet Precision: geometry stays restrained */
+  --radius-ui:0px;
   --radius-card:0px;
 }
 
+@media(max-width:1440px){:root{--page-gutter:64px}}
+@media(max-width:1200px){:root{--page-gutter:48px}}
+@media(max-width:960px){:root{--page-gutter:32px}}
+@media(max-width:640px){:root{--page-gutter:24px}}
+
 body{
-  font-size:15px;
-  line-height:1.6;
+  font-size:var(--fs-body);
+  line-height:var(--lh-body);
   color:var(--text);
+  letter-spacing:var(--tracking-body);
 }
 
-/* Container / section rhythm */
+/* --------------------------------------------------------------------------
+   CONTAINER / ALIGNMENT
+   -------------------------------------------------------------------------- */
 .section{
-  padding-block:var(--section-y);
-  padding-inline:max(clamp(var(--gutter-min),var(--gutter-fluid),var(--gutter-max)),calc((100% - var(--content-max))/2));
+  padding-block:var(--space-14);
+  padding-inline:max(var(--page-gutter),calc((100% - var(--container))/2));
+}
+.section.compact{padding-block:var(--space-9)}
+
+.site-header,
+.site-footer{
+  padding-inline:max(var(--page-gutter),calc((100% - var(--container))/2));
 }
 
-.section.compact{
-  padding-block:var(--section-y-compact);
+.site-header{
+  min-height:80px;
+  height:auto;
+  padding-block:var(--space-2);
 }
 
-/* Typography: Working English is the sizing reference. Font family is still provisional. */
+.site-footer{padding-block:var(--space-8)}
+
+/* Wide commerce/editorial modules can breathe beyond the core 1280 container,
+   but remain centered and quantized. */
+.collection-hero,
+.pdp-top,
+.pdp-top-ux,
+.use-detail{
+  width:min(100%,var(--container-wide));
+  margin-inline:auto;
+}
+
+.why-collage{
+  width:min(calc(100% - (var(--page-gutter) * 2)),var(--container));
+  margin-inline:auto;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+.display{letter-spacing:var(--tracking-display)}
+
 .h1{
-  font-size:64px;
-  line-height:1.02;
-  letter-spacing:-.035em;
-  max-width:900px;
+  font-size:var(--fs-h1)!important;
+  line-height:var(--lh-h1);
+  letter-spacing:var(--tracking-display);
+  max-width:960px;
 }
 
 .h2{
-  font-size:42px;
-  line-height:1.1;
-  letter-spacing:-.025em;
+  font-size:var(--fs-h2)!important;
+  line-height:var(--lh-h2);
+  letter-spacing:var(--tracking-heading);
 }
 
-.h3{
-  font-size:25px;
-  line-height:1.2;
+.h3,
+.home-use-row-copy .h3,
+.pdp-use-copy .h3,
+.pdp-value-copy .h3,
+.pdp-proof-copy .h3,
+.pdp-proof-main-copy .h3,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy .h3{
+  font-size:var(--fs-h3)!important;
+  line-height:var(--lh-h3);
+  letter-spacing:var(--tracking-heading);
 }
 
-.lead{
-  font-size:15px;
-  line-height:1.65;
+.lead,
+.buybox .lead,
+.home-use-copy .lead,
+.use-detail-copy .lead{
+  font-size:var(--fs-lead)!important;
+  line-height:var(--lh-lead);
   color:var(--text-muted);
-  max-width:620px;
-  margin-top:20px;
+  max-width:var(--text-measure);
+  margin-top:var(--space-3);
 }
 
-.eyebrow{
-  font-size:10px;
-  line-height:1.4;
-  letter-spacing:.14em;
-  margin-bottom:14px;
-}
-
-.tiny,
-.caption{
-  font-size:11px;
-  line-height:1.55;
-}
-
-/* Commerce / utility text */
-.globalnav{
-  font-size:11px;
-}
-
-.actions{
-  font-size:11px;
-}
-
-.btn{
-  min-height:44px;
-  padding:12px 18px;
-  font-size:12px;
-  line-height:1.2;
-  border-color:#242424;
-  border-radius:var(--radius-ui);
-}
-
-.add{
-  min-height:48px;
-  padding:14px 18px;
-  font-size:12px;
-  letter-spacing:.02em;
-}
-
-.qty{
-  min-height:42px;
-  align-items:center;
-  font-size:12px;
-}
-
-.product-name{
-  font-size:18px;
-  line-height:1.25;
-  margin-top:14px;
-}
-
-.product-sub{
-  font-size:11.5px;
-  line-height:1.5;
-  color:var(--text-muted);
-  margin-top:5px;
-}
-
-.price{
-  font-size:12px;
-  line-height:1.4;
-  margin-top:7px;
-}
-
-.price-big{
-  font-size:18px;
-  line-height:1.4;
-}
-
-.buybox .lead{
-  font-size:14px!important;
-  line-height:1.6;
-}
-
-.purchase-assurance b{
-  font-size:10.5px;
-}
-
-.purchase-assurance span{
-  font-size:10px;
-  line-height:1.45;
-}
-
-.buybox .review-jump,
-.buybox .compare-jump{
-  font-size:11px;
-}
-
-/* Repeated descriptive text should not fall below a practical reading size. */
+/* Default readable prose floor. This intentionally overrides legacy 9–13px
+   wireframe copy where that text carries actual customer-facing meaning. */
+.page p:not(.lead),
+.product-sub,
+.price,
+.price-big,
 .cat p,
 .shop-category p,
 .collection-benefit p,
@@ -165,20 +180,328 @@ body{
 .pdp-proof-layout.equalized .pdp-proof-equal-copy p,
 .review-placeholder p,
 .review-overview p,
+.review-body p,
+.faq-a,
+.info-row,
+.spec small,
 .pdp-compare-cell,
 .use-jump p,
 .micro,
-.footer-col span,
-.site-footer p{
-  font-size:11.5px;
-  line-height:1.55;
+.site-footer p,
+.footer-col span{
+  font-size:var(--fs-body)!important;
+  line-height:var(--lh-body)!important;
 }
 
-.use-link{
-  font-size:10.5px;
+/* Tertiary / metadata only. These may be small because they are not primary
+   reading content. */
+.eyebrow,
+.tiny,
+.caption,
+.product-hero-index,
+.review-meta,
+.rating-row,
+.pdp-gallery-thumb-index,
+.review-placeholder .meta,
+.visual-caption{
+  font-size:var(--fs-meta)!important;
+  line-height:var(--lh-meta)!important;
 }
 
-/* Visual grammar */
+.eyebrow{
+  letter-spacing:var(--tracking-eyebrow);
+  margin-bottom:var(--space-2);
+}
+
+.tiny,.caption{color:var(--text-muted)}
+
+.product-name{
+  font-size:var(--fs-body);
+  line-height:var(--lh-body);
+  margin-top:var(--space-2);
+  letter-spacing:0;
+}
+
+.product-sub{margin-top:var(--space-1)}
+.price{margin-top:var(--space-1)}
+.price-big{margin-block:var(--space-2)}
+
+/* --------------------------------------------------------------------------
+   UI / COMMERCE TYPE
+   -------------------------------------------------------------------------- */
+.globalnav,
+.actions,
+.btn,
+.add,
+.qty,
+.purchase-assurance b,
+.purchase-assurance span,
+.buybox .review-jump,
+.buybox .compare-jump,
+.use-link,
+.related-tools button,
+.filterbar,
+.faq-q,
+.field{
+  font-size:var(--fs-body)!important;
+  line-height:var(--lh-body);
+}
+
+.globalnav{gap:var(--space-4)}
+.actions{gap:var(--space-3)}
+.header-right{gap:var(--space-4)}
+
+.btn{
+  min-height:48px;
+  padding:var(--space-1) var(--space-3);
+  letter-spacing:var(--tracking-ui);
+  border-color:#242424;
+  border-radius:var(--radius-ui);
+}
+
+.add{
+  min-height:48px;
+  padding:var(--space-2) var(--space-3);
+  margin-top:var(--space-2);
+  letter-spacing:var(--tracking-ui);
+}
+
+.qty{
+  min-height:48px;
+  width:112px;
+  padding:var(--space-1) var(--space-2);
+  align-items:center;
+}
+
+/* --------------------------------------------------------------------------
+   CORE SPACING / COMPONENT RHYTHM
+   -------------------------------------------------------------------------- */
+.row{gap:var(--space-2)}
+.divider{margin-block:var(--space-3)}
+
+.product-strip{
+  gap:var(--space-3);
+  margin-top:var(--space-5);
+}
+.slider-foot{margin-top:var(--space-3)}
+
+.product-img{height:320px}
+.grid-products{
+  gap:var(--space-4) var(--space-3);
+  margin-top:var(--space-4);
+}
+.grid-products .product-img{height:360px}
+
+.cat-grid{
+  gap:var(--space-3);
+  margin-top:var(--space-5);
+}
+.cat{
+  min-height:416px;
+  padding:var(--space-4);
+}
+.cat p{margin-top:var(--space-1)}
+
+.split{gap:var(--space-8)}
+.visualbox{min-height:432px}
+
+.proof-grid{
+  gap:var(--space-4);
+  margin-top:var(--space-5);
+}
+.proof{padding-top:var(--space-3)}
+.proof p{margin-top:var(--space-2)}
+
+.shop-category-row{
+  gap:var(--space-2);
+  margin-top:var(--space-4);
+}
+.shop-category{padding:var(--space-3)}
+.shop-category p{margin-top:var(--space-1)}
+
+.collection-copy{
+  padding-block:var(--space-10);
+  padding-left:var(--page-gutter);
+  padding-right:var(--space-8);
+}
+.collection-hero{min-height:480px}
+.collection-benefits{margin-top:var(--space-4)}
+.collection-benefit{padding:var(--space-3)}
+.collection-benefit p{margin-top:var(--space-1)}
+
+.filterbar{
+  margin-top:var(--space-4);
+  padding-block:var(--space-2);
+  gap:var(--space-3);
+}
+
+/* Home */
+.hero-stage{height:640px}
+.hero-copy{
+  padding-block:var(--space-10);
+  padding-left:max(var(--page-gutter),calc((100vw - var(--container))/2));
+  padding-right:var(--space-8);
+}
+
+.home-precision-module{gap:var(--space-8)}
+.home-precision-collage{
+  gap:var(--space-2);
+  min-height:432px;
+}
+.home-use-layout{
+  gap:var(--space-3);
+  margin-top:var(--space-5);
+}
+.home-use-feature{grid-template-rows:392px auto}
+.home-use-copy{padding:var(--space-3)}
+.home-use-list{gap:var(--space-2)}
+.home-use-row{min-height:176px}
+.home-use-thumb{min-height:176px}
+.home-use-row-copy{padding:var(--space-3)}
+.home-use-row-copy p{margin-block:var(--space-1) var(--space-2)}
+.use-link{padding-top:var(--space-2)}
+
+/* In Use */
+.use-hero,
+.why-hero{
+  padding-block:var(--space-14) var(--space-12);
+  padding-inline:max(var(--page-gutter),calc((100% - var(--container))/2));
+}
+.use-hero .lead,
+.why-hero .lead{margin-inline:auto}
+
+.use-jump-grid{
+  gap:var(--space-3);
+  margin-top:var(--space-5);
+}
+.use-jump{
+  min-height:320px;
+  padding:var(--space-4);
+}
+.use-jump p{margin-top:var(--space-1)}
+
+.use-detail,
+.use-detail.reverse{min-height:576px}
+.use-detail-visual{min-height:576px}
+.use-detail-copy{padding:var(--space-10)}
+.related-tools{gap:var(--space-1)}
+.related-tools button{padding:var(--space-1) var(--space-2)}
+
+/* PDP */
+.pdp-top-ux{min-height:704px}
+.pdp-gallery-ux{
+  gap:var(--space-1);
+  padding:var(--space-3);
+  min-height:704px;
+}
+.pdp-gallery-stage{min-height:592px}
+.pdp-gallery-thumbs{gap:var(--space-1)}
+.pdp-gallery-thumb{height:88px}
+
+.buybox{padding:var(--space-10) var(--space-8)}
+.purchase-assurance{margin-top:var(--space-2)}
+.purchase-assurance>button,
+.purchase-assurance>div{
+  min-height:64px;
+  padding:var(--space-2);
+  gap:var(--space-1);
+}
+.buybox .compare-jump{margin-top:var(--space-2)}
+
+.pdp-value-head,
+.pdp-proof-head{
+  max-width:800px;
+  margin-bottom:var(--space-4);
+}
+.pdp-value-grid,
+.pdp-proof-layout.equalized{
+  gap:var(--space-3)!important;
+}
+.pdp-value-card,
+.pdp-value-card.main{grid-template-rows:336px auto}
+.pdp-value-card .pdp-value-visual,
+.pdp-value-card.main .pdp-value-visual{min-height:336px}
+.pdp-value-copy{padding:var(--space-3)}
+
+.pdp-proof-layout.equalized .pdp-proof-equal-card{grid-template-rows:304px auto}
+.pdp-proof-layout.equalized .pdp-proof-equal-visual{min-height:304px}
+.pdp-proof-layout.equalized .pdp-proof-equal-copy{padding:var(--space-3)}
+
+.specs{margin-top:var(--space-4)}
+.spec{padding:var(--space-3)}
+
+.pdp-compare-wrap{margin-top:var(--space-4)}
+.pdp-compare-cell{padding:var(--space-2) var(--space-3)}
+.pdp-compare-cell.product{padding:var(--space-3)}
+.pdp-compare-thumb{
+  height:152px;
+  margin-bottom:var(--space-2);
+}
+
+.review-shell{
+  gap:var(--space-6);
+  margin-top:var(--space-4);
+}
+.review-overview{padding-right:var(--space-6)}
+.review-placeholder{
+  gap:var(--space-4);
+  padding-block:var(--space-3);
+}
+
+.pdp-use-grid{
+  gap:var(--space-3);
+  margin-top:var(--space-4);
+}
+.pdp-use-card{grid-template-rows:256px auto}
+.pdp-use-copy{padding:var(--space-3)}
+
+/* Why AUX */
+.why-collage{height:688px}
+.why-center{padding:var(--space-6)}
+.precision-grid,
+.evidence-grid{
+  gap:var(--space-3);
+  margin-top:var(--space-4);
+}
+.precision-card{padding:var(--space-3);min-height:192px}
+.evidence-visual{height:192px}
+.evidence-card>b,
+.evidence-card>p{margin-inline:var(--space-3)}
+.evidence-card>b{margin-top:var(--space-2)}
+.evidence-card>p{margin-top:var(--space-1);margin-bottom:var(--space-3)}
+
+.story-steps{
+  gap:var(--space-3);
+  margin-top:var(--space-5);
+}
+.story-step{padding:var(--space-3)}
+
+.why-band{
+  padding-block:var(--space-14);
+  padding-inline:max(var(--page-gutter),calc((100% - var(--container))/2));
+}
+.why-band .h2{font-size:var(--fs-h2)!important;line-height:var(--lh-h2)}
+
+/* Support */
+.support{max-width:864px}
+.faq-item{padding-block:var(--space-3)}
+.faq-a{margin-top:var(--space-2)}
+.info-table{margin-top:var(--space-4)}
+.info-row{
+  grid-template-columns:192px 1fr;
+  padding-block:var(--space-2);
+}
+.form{
+  gap:var(--space-2);
+  margin-top:var(--space-4);
+}
+.field{gap:var(--space-1)}
+.input{height:48px}
+.textarea{height:144px}
+
+/* --------------------------------------------------------------------------
+   VISUAL GRAMMAR
+   -------------------------------------------------------------------------- */
 .product-card,
 .home-use-feature,
 .home-use-row,
@@ -193,34 +516,37 @@ body{
   border-radius:var(--radius-card);
 }
 
-.site-header{
-  min-height:76px;
-  height:auto;
-  padding-block:18px;
-}
+/* Review annotations are intentionally outside the production type system. */
+.photo-label,.use-photo-label,.ja-note,.anno,.ref{font-size:10px}
 
-.site-footer{
-  padding-inline:max(clamp(var(--gutter-min),var(--gutter-fluid),var(--gutter-max)),calc((100% - var(--content-max))/2));
-}
-
+/* --------------------------------------------------------------------------
+   RESPONSIVE / still quantized to the 8pt spatial system
+   -------------------------------------------------------------------------- */
 @media(max-width:1100px){
-  :root{
-    --section-y:88px;
-    --section-y-compact:60px;
-  }
-  .h1{font-size:54px}
-  .h2{font-size:38px}
+  .section{padding-block:var(--space-12)}
+  .section.compact{padding-block:var(--space-8)}
+  .h1{font-size:56px!important;line-height:64px}
+  .h2{font-size:40px!important;line-height:48px}
+  .home-use-layout{grid-template-columns:1fr}
+  .home-use-list{gap:var(--space-2)}
+  .buybox{padding:var(--space-8) var(--space-6)}
 }
 
 @media(max-width:760px){
-  :root{
-    --gutter-min:22px;
-    --section-y:68px;
-    --section-y-compact:48px;
-  }
-  body{font-size:14px}
-  .h1{font-size:42px;line-height:1.06}
-  .h2{font-size:32px;line-height:1.12}
-  .h3{font-size:22px}
-  .lead{font-size:14px}
+  .section{padding-block:var(--space-8)}
+  .section.compact{padding-block:var(--space-6)}
+  .h1{font-size:40px!important;line-height:48px}
+  .h2{font-size:32px!important;line-height:40px}
+  .h3,
+  .home-use-row-copy .h3,
+  .pdp-use-copy .h3{font-size:24px!important;line-height:32px}
+  .lead,
+  .buybox .lead{font-size:20px!important;line-height:32px}
+  .site-header{min-height:72px}
+  .product-strip{gap:var(--space-2)}
+  .home-use-feature{grid-template-rows:304px auto}
+  .home-use-row{grid-template-columns:1fr;min-height:auto}
+  .home-use-thumb{min-height:176px}
+  .use-detail-copy{padding:var(--space-6) var(--page-gutter)}
+  .buybox{padding:var(--space-6) var(--page-gutter)}
 }
