@@ -1,0 +1,11 @@
+/* Content Master visual corrections: explicit fixes only. */
+.master-collection-about-aux .balanced-cta-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:16px!important;
+  column-gap:16px!important;
+  row-gap:16px!important;
+  width:auto!important;
+  flex-wrap:wrap!important;
+}
