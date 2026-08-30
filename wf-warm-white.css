@@ -1,4 +1,4 @@
-/* AUX USA / Warm White Surface Test
+/* AUX USA / Warm White Surface Test v2
    Replace pure-white customer-facing surfaces with #fffdfc while preserving
    white text/icons used on dark backgrounds.
 */
@@ -32,6 +32,7 @@
 .review-placeholder,
 .review-overview,
 .pdp-value-copy,
+.pdp-proof-equal-card,
 .pdp-proof-equal-copy,
 .precision-card,
 .evidence-card,
@@ -39,6 +40,7 @@
 .pdp-compare-cell,
 .pdp-spec-accordion-panel,
 .pdp-spec-pair,
+.input,
 .field input,
 .field textarea,
 .field select{
