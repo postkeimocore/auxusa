@@ -1,4 +1,4 @@
-/* AUX USA / Interaction & Media System v1.3
+/* AUX USA / Interaction & Media System v1.4
    Applies semantic media / interaction components after every page render
    without changing page order.
 */
@@ -96,6 +96,26 @@
     target.querySelectorAll('.action-row').forEach(row=>{
       if(row.querySelectorAll('.btn').length===2) row.classList.add('balanced-cta-row');
     });
+  }
+
+  function decorateEditorialImageBands(){
+    if(current==='home'){
+      const sections=[...document.querySelectorAll('.page > section.section')];
+      const target=sections.at(-1);
+      if(target){
+        target.classList.add('prefooter-image-cta','centered-prefooter','home-why-image-band');
+        ensurePhotoLabel(target,'Background image: AUX tool in use / precise hand movement / natural kitchen context');
+      }
+    }
+
+    if(current==='why'){
+      const split=document.querySelector('.page > section.section.dark .split.reverse');
+      const target=split?.closest('section.section');
+      if(target){
+        target.classList.add('prefooter-image-cta','centered-prefooter','why-japanese-precision-image-band');
+        ensurePhotoLabel(target,'Background image: Tsubame-Sanjo / metalworking / production / inspection');
+      }
+    }
   }
 
   function decorateWhyBackToTools(){
@@ -218,6 +238,7 @@
     normalizeCollectionFeatured();
     decorateImageHero();
     decoratePrefooterImageCta();
+    decorateEditorialImageBands();
     decorateWhyBackToTools();
     removeInternalOnlyNotes();
     decoratePdpGalleryArrows();
