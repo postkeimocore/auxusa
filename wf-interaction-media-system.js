@@ -1,9 +1,13 @@
-/* AUX USA / Interaction & Media System v1.1
+/* AUX USA / Interaction & Media System v1.2
    Applies semantic media / interaction components after every page render
-   without changing content meaning or page order.
+   without changing page order.
 */
 (function(){
   const renderBeforeInteractionMedia=render;
+
+  function localeIsJA(){
+    return typeof wireframeLocale!=='undefined' && wireframeLocale==='ja';
+  }
 
   function ensurePhotoLabel(host,text){
     if(!host || host.querySelector(':scope > .photo-label')) return;
@@ -15,8 +19,33 @@
 
   function normalizeHeader(){
     document.querySelectorAll('.site-header .action-item span').forEach(span=>{
-      if(/^Cart\s*\(/i.test(span.textContent.trim())) span.textContent='Cart (1)';
+      const text=span.textContent.trim();
+      if(/^(Cart|カート)/i.test(text)) span.textContent=`${localeIsJA()?'カート':'Cart'} ❶`;
     });
+  }
+
+  function normalizeHomeComponents(){
+    if(current!=='home') return;
+
+    const featuredSection=[...document.querySelectorAll('.page > section.section')]
+      .find(section=>section.querySelector('.slider-foot') && section.querySelector('.product-strip'));
+    featuredSection?.querySelector(':scope > .eyebrow')?.remove();
+
+    const featureLink=document.querySelector('.home-use-feature .use-link');
+    if(featureLink){
+      featureLink.innerHTML=`${localeIsJA()?'この使い方を見る':'See this use'} <span class="arr">→</span>`;
+    }
+  }
+
+  function normalizeCollectionFeatured(){
+    if(!['cook','serve','table'].includes(current)) return;
+    const section=document.querySelector('.featured-two')?.closest('section.section');
+    if(!section) return;
+
+    section.classList.add('collection-featured-tools');
+    section.querySelector(':scope > .eyebrow')?.remove();
+    const heading=section.querySelector(':scope > .h2');
+    if(heading) heading.textContent=localeIsJA()?'注目の商品':'Featured tools';
   }
 
   function decorateImageHero(){
@@ -31,9 +60,6 @@
         : 'Hero background image: AUX in use / product + hand + precise movement'
     );
 
-    /* In Use previously placed a separate editorial image immediately after a
-       text-only hero. The hero itself now owns that image, so the duplicate
-       visual block is removed. */
     if(current==='inuse') document.querySelector('.inuse-editorial-hero')?.remove();
   }
 
@@ -45,7 +71,7 @@
     const target=sections.at(-1);
     if(!target) return;
 
-    target.classList.add('prefooter-image-cta',`prefooter-${current}`);
+    target.classList.add('prefooter-image-cta','centered-prefooter',`prefooter-${current}`);
     if(current==='inuse') target.classList.add('inuse-prefooter');
 
     const labelMap={
@@ -112,6 +138,8 @@
   function decorate(){
     document.querySelectorAll('.btn').forEach(btn=>btn.classList.add('cta-btn'));
     normalizeHeader();
+    normalizeHomeComponents();
+    normalizeCollectionFeatured();
     decorateImageHero();
     decoratePrefooterImageCta();
     decorateWhyBackToTools();
