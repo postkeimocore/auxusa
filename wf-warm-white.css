@@ -1,0 +1,63 @@
+/* AUX USA / Warm White Surface Test
+   Replace pure-white customer-facing surfaces with #fffdfc while preserving
+   white text/icons used on dark backgrounds.
+*/
+:root{
+  --paper:#fffdfc;
+  --base:#fffdfc;
+  --surface:#fffdfc;
+}
+
+/* Primary page / shell surfaces. */
+.browser,
+.site-header,
+.page,
+.buybox{
+  background:#fffdfc!important;
+}
+
+/* Default section white. Neutral #f5f5f5, black and image-backed sections
+   remain separate members of the four-surface system. */
+.page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
+  background:#fffdfc!important;
+}
+.page > .restored-pdp-product-features{
+  background:#fffdfc!important;
+}
+
+/* Common white component surfaces that do not already resolve through
+   --surface / --paper. */
+.spec,
+.compare-card,
+.review-placeholder,
+.review-overview,
+.pdp-value-copy,
+.pdp-proof-equal-copy,
+.precision-card,
+.evidence-card,
+.shop-category,
+.pdp-compare-cell,
+.pdp-spec-accordion-panel,
+.pdp-spec-pair,
+.field input,
+.field textarea,
+.field select{
+  background-color:#fffdfc!important;
+}
+
+/* Light buttons adopt the same warm white. Inverse text on dark sections stays
+   true white; only the button surface is warmed. */
+.btn:not(.black):not(.ghost){
+  background:#fffdfc!important;
+}
+.section.dark .btn:not(.ghost),
+.why-band .btn:not(.ghost){
+  background:#fffdfc!important;
+  border-color:#fffdfc!important;
+}
+
+/* Keep the compact PDP policy row visually unboxed. */
+.restored-pdp-page .purchase-assurance.purchase-assurance-compact,
+.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link{
+  background:transparent!important;
+}
