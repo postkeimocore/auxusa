@@ -1,4 +1,4 @@
-/* AUX USA / Interaction & Media System v1.2
+/* AUX USA / Interaction & Media System v1.3
    Applies semantic media / interaction components after every page render
    without changing page order.
 */
@@ -35,6 +35,16 @@
     if(featureLink){
       featureLink.innerHTML=`${localeIsJA()?'この使い方を見る':'See this use'} <span class="arr">→</span>`;
     }
+
+    const categoryLabels=[
+      'Category background image: COOK / cooking movement / pan + food',
+      'Category background image: SERVE / plating or shared dish',
+      'Category background image: TABLE / tabletop + small foods'
+    ];
+    document.querySelectorAll('.cat-grid .cat').forEach((card,index)=>{
+      card.classList.add('home-category-image-card');
+      ensurePhotoLabel(card,categoryLabels[index]||'Category background image');
+    });
   }
 
   function normalizeCollectionFeatured(){
@@ -135,6 +145,72 @@
     stage.dataset.navReady='true';
   }
 
+  function addIntentionalBreak(selector,plain,html){
+    const node=document.querySelector(selector);
+    if(!node || node.textContent.trim()!==plain || node.querySelector('.intentional-break')) return;
+    node.innerHTML=html;
+  }
+
+  function normalizeTextLayout(){
+    if(['cook','serve','table'].includes(current)){
+      const valueSection=[...document.querySelectorAll('.page > section.section')]
+        .find(section=>section.querySelector('.collection-benefits'));
+      valueSection?.classList.add('collection-value-copy');
+
+      const precisionSection=[...document.querySelectorAll('.page > section.section.soft')]
+        .find(section=>section.querySelector('.split') && section.querySelector('[data-go="why"]') && section.querySelector('[data-go="inuse"]'));
+      if(precisionSection){
+        precisionSection.classList.add('collection-precision-copy');
+        precisionSection.querySelector('.split')?.classList.add('collection-precision-layout');
+      }
+    }
+
+    if(current==='inuse'){
+      document.querySelector('.image-overlay-hero')?.classList.add('wide-hero-copy');
+      document.querySelector('.inuse-prefooter')?.classList.add('wide-prefooter-copy');
+    }
+
+    if(current==='why'){
+      document.querySelector('.image-overlay-hero')?.classList.add('wide-hero-copy');
+      document.querySelector('.why-back-tools')?.classList.add('wide-prefooter-copy');
+    }
+
+    if(current==='pdp'){
+      document.querySelector('.pdp-value-head')?.classList.add('pdp-reading-head');
+      document.querySelector('.pdp-proof-head')?.classList.add('pdp-reading-head');
+      document.querySelector('#compare-tools')?.classList.add('pdp-compare-reading');
+      document.querySelector('.pdp-explore-band')?.classList.add('pdp-wide-explore');
+
+      if(!localeIsJA()){
+        addIntentionalBreak(
+          '.pdp-value-head .h2',
+          'Control where the movement gets small.',
+          'Control where the movement<br class="intentional-break">gets small.'
+        );
+        addIntentionalBreak(
+          '.pdp-value-head .lead',
+          'Fingertip Tongs are designed for placing, picking up and serving smaller foods with a clear view of where the tool meets the food.',
+          'Fingertip Tongs are designed for placing, picking up and serving smaller foods<br class="intentional-break">with a clear view of where the tool meets the food.'
+        );
+        addIntentionalBreak(
+          '.pdp-proof-head .h2',
+          'The difference is built into the contact point, overall form and proportion.',
+          'The difference is built into the contact point,<br class="intentional-break">overall form and proportion.'
+        );
+        addIntentionalBreak(
+          '.pdp-proof-head .lead',
+          'Use product-specific facts and close visual evidence here. Avoid repeating generic “precision” claims that are not tied to this product.',
+          'Use product-specific facts and close visual evidence here.<br class="intentional-break">Avoid repeating generic “precision” claims that are not tied to this product.'
+        );
+        addIntentionalBreak(
+          '#compare-tools > .lead',
+          'Similar forms can solve different movements. Compare only the attributes that meaningfully change the choice.',
+          'Similar forms can solve different movements.<br class="intentional-break">Compare only the attributes that meaningfully change the choice.'
+        );
+      }
+    }
+  }
+
   function decorate(){
     document.querySelectorAll('.btn').forEach(btn=>btn.classList.add('cta-btn'));
     normalizeHeader();
@@ -145,6 +221,7 @@
     decorateWhyBackToTools();
     removeInternalOnlyNotes();
     decoratePdpGalleryArrows();
+    normalizeTextLayout();
   }
 
   render=function(id,opts={updateUrl:true}){
