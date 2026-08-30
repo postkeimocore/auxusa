@@ -264,3 +264,12 @@ br.intentional-break{display:block}
     grid-template-columns:1fr!important;
   }
 }
+
+/* TABLE precision sentence is longer than COOK / SERVE; avoid orphaning the final word. */
+.prefooter-table.collection-precision-copy .split,
+.prefooter-table.collection-precision-copy .split>div:not(:has(.visualbox)){
+  max-width:1160px!important;
+}
+.prefooter-table.collection-precision-copy .lead{
+  max-width:1120px!important;
+}
