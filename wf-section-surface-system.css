@@ -1,26 +1,26 @@
-/* AUX USA / Section Surface System v1.1
+/* AUX USA / Section Surface System v1.2
    Top-level page sections use four surface categories only:
    1. White
-   2. Neutral #989898
+   2. Neutral #f5f5f5
    3. Black
-   4. Image + readability gradient
+   4. Image background
 
-   Media placeholders keep their own light surfaces; this file governs section
-   backgrounds, not every component/image well.
+   Media placeholders may use the neutral surface when they are part of the
+   hero/product presentation. Image-backed editorial bands remain image-led.
 */
 :root{
-  --section-neutral:#989898;
+  --section-neutral:#f5f5f5;
   --section-neutral-text:#151515;
-  --section-neutral-muted:#2b2d2b;
+  --section-neutral-muted:#4f524e;
 }
 
 /* Default editorial / commerce section = white. Image-backed components are
-   excluded so their image layer + black gradient remain visible. */
+   excluded so their image layer remains visible. */
 .page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
   background:#fff!important;
 }
 
-/* The former pale green neutral section is now the single gray surface. */
+/* One shared neutral surface across marketing / commerce sections. */
 .page > section.section.soft:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
 .page > section.section.warm:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
 .page > section.section.cool:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
@@ -42,4 +42,29 @@
   --text-muted:#4f524e;
   --text-subtle:#4f524e;
   --text-secondary:#4f524e;
+}
+
+/* Hero neutral surfaces: same #f5f5f5 language on Home copy and PDP product media. */
+.master-home-hero-copy{
+  background:var(--section-neutral)!important;
+}
+.master-pdp-top .pdp-gallery-ux,
+.master-pdp-top .pdp-gallery-stage,
+.master-pdp-top .pdp-gallery-thumbs,
+.master-pdp-top .pdp-gallery-thumb{
+  background:var(--section-neutral)!important;
+}
+
+/* Home / COOK / SERVE / TABLE / In Use pre-footer image CTAs:
+   the copy-to-button group sits on the vertical center of the image section. */
+.master-home-about,
+.master-collection-about-aux,
+.inuse-prefooter{
+  align-items:center!important;
+}
+.master-home-about .master-image-band-copy,
+.master-collection-about-aux .master-image-band-copy,
+.inuse-prefooter .master-image-band-copy{
+  margin-inline:auto!important;
+  text-align:center!important;
 }
