@@ -1,6 +1,6 @@
-/* AUX USA / Interaction & Media System v1.4
+/* AUX USA / Interaction & Media System v1.5
    Applies semantic media / interaction components after every page render
-   without changing page order.
+   without changing page order or Content Master copy.
 */
 (function(){
   const renderBeforeInteractionMedia=render;
@@ -53,6 +53,12 @@
     if(!section) return;
 
     section.classList.add('collection-featured-tools');
+
+    /* Content Master owns the user-facing section label/copy. The legacy
+       renderer used "Featured tools", but v1 FIX specifies Featured Products /
+       代表商品. Keep only the layout class when a master page is active. */
+    if(document.querySelector('.master-page')) return;
+
     section.querySelector(':scope > .eyebrow')?.remove();
     const heading=section.querySelector(':scope > .h2');
     if(heading) heading.textContent=localeIsJA()?'注目の商品':'Featured tools';
