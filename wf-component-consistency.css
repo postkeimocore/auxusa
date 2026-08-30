@@ -62,6 +62,9 @@
    This compact three-step list uses a tighter title/body relationship than a
    full section heading.
    -------------------------------------------------------------------------- */
+.story-step>b{
+  margin-bottom:0!important;
+}
 .story-step>b + p{
   margin-top:8px!important;
 }
