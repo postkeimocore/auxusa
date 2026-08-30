@@ -1,0 +1,243 @@
+/* AUX USA / Interaction & Media System v1.0
+   Shared visual components for action affordance, image-overlay sections and
+   the PDP first-view gallery.
+
+   Principles
+   - CTA must read as an action before the label is read.
+   - Image-backed copy always owns a readability layer.
+   - The readability layer is a top-to-bottom black gradient, not a flat veil.
+   - PDP secondary media stays visible inside the first view and uses square
+     thumbnails.
+*/
+
+:root{
+  --cta-height:56px;
+  --cta-padding-x:24px;
+  --cta-gap:16px;
+  --overlay-top:rgba(0,0,0,.06);
+  --overlay-upper:rgba(0,0,0,.16);
+  --overlay-mid:rgba(0,0,0,.42);
+  --overlay-bottom:rgba(0,0,0,.84);
+}
+
+/* ========================================================================== 
+   01. CTA BUTTON COMPONENT
+   ========================================================================== */
+.btn{
+  min-height:var(--cta-height)!important;
+  padding:12px var(--cta-padding-x)!important;
+  gap:var(--cta-gap)!important;
+  justify-content:space-between!important;
+  font-weight:600;
+  text-decoration:none!important;
+  white-space:nowrap;
+  transition:transform .16s ease,background-color .16s ease,border-color .16s ease,color .16s ease,opacity .16s ease;
+}
+.btn::after{
+  content:'→';
+  flex:0 0 auto;
+  font-size:20px;
+  line-height:1;
+  font-weight:500;
+  transform:translateY(-1px);
+}
+.btn:hover{transform:translateY(-1px);opacity:1!important}
+.btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+/* Primary commerce action remains distinct from page-navigation CTA. */
+.add{
+  min-height:56px!important;
+  padding:12px 24px!important;
+  font-weight:700;
+}
+
+/* ========================================================================== 
+   02. IMAGE OVERLAY HERO / PRE-FOOTER CTA
+   Image itself is supplied later through --section-image. Wireframe keeps a
+   neutral image placeholder behind the exact same overlay stack.
+   ========================================================================== */
+.image-overlay-hero,
+.prefooter-image-cta{
+  --section-image:none;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:var(--on-dark)!important;
+  background:#7f847f!important;
+}
+.image-overlay-hero::before,
+.prefooter-image-cta::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-color:#7f847f;
+  background-image:var(--section-image);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.image-overlay-hero::after,
+.prefooter-image-cta::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    var(--overlay-top) 0%,
+    var(--overlay-upper) 30%,
+    var(--overlay-mid) 66%,
+    var(--overlay-bottom) 100%
+  );
+}
+
+.image-overlay-hero{
+  min-height:560px;
+  padding:96px max(var(--page-gutter),calc((100% - var(--container))/2));
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+}
+.image-overlay-hero>.h1,
+.image-overlay-hero>.lead,
+.image-overlay-hero>.eyebrow{
+  position:relative;
+  z-index:1;
+}
+.image-overlay-hero>.h1{max-width:880px}
+.image-overlay-hero>.lead{max-width:680px;color:var(--on-dark)!important}
+.image-overlay-hero>.eyebrow{color:var(--on-dark-muted)!important}
+
+.prefooter-image-cta{
+  min-height:480px;
+  padding-block:96px!important;
+  display:flex;
+  align-items:flex-end;
+}
+.prefooter-image-cta>*{position:relative;z-index:1}
+.prefooter-image-cta .h2,
+.prefooter-image-cta .h3,
+.prefooter-image-cta .lead,
+.prefooter-image-cta .eyebrow,
+.prefooter-image-cta p{color:var(--on-dark)!important}
+.prefooter-image-cta .eyebrow{color:var(--on-dark-muted)!important}
+.prefooter-image-cta .lead{max-width:680px}
+
+/* Collection pre-footer previously used a side image. Once the whole section
+   becomes the image, the side visual is redundant and the copy becomes the
+   foreground content block. */
+.prefooter-image-cta .split{
+  display:block!important;
+  width:100%;
+  max-width:760px;
+}
+.prefooter-image-cta .split>div:first-child{display:none!important}
+.prefooter-image-cta .split>div:last-child{max-width:760px}
+.prefooter-image-cta .brand-intro,
+.prefooter-image-cta .pdp-explore-band{
+  width:100%;
+  max-width:760px;
+  margin:0!important;
+  text-align:left!important;
+}
+.prefooter-image-cta .action-row{justify-content:flex-start!important}
+
+/* CTA states on photographic backgrounds. Filled = primary, outline = secondary. */
+.image-overlay-hero .btn.black,
+.prefooter-image-cta .btn.black{
+  color:#151515!important;
+  background:#fff!important;
+  border-color:#fff!important;
+}
+.image-overlay-hero .btn:not(.black),
+.prefooter-image-cta .btn:not(.black){
+  color:#fff!important;
+  background:rgba(0,0,0,.14)!important;
+  border-color:#fff!important;
+  backdrop-filter:blur(2px);
+}
+
+/* Wireframe-only photography note. Preview mode already hides .photo-label. */
+.image-overlay-hero>.photo-label,
+.prefooter-image-cta>.photo-label{
+  position:absolute;
+  z-index:2;
+  top:24px;
+  left:24px;
+}
+
+/* ========================================================================== 
+   03. PDP FIRST-VIEW GALLERY
+   Main image + square media rail stays inside the first-view image area.
+   ========================================================================== */
+.pdp-top-ux{align-items:start!important}
+.pdp-gallery-ux{
+  height:clamp(680px,calc(100svh - 80px),800px)!important;
+  min-height:680px!important;
+  max-height:800px;
+  padding:24px!important;
+  gap:8px!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.pdp-gallery-stage{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+}
+.pdp-gallery-thumbs{
+  flex:0 0 auto;
+  display:grid!important;
+  grid-template-columns:none!important;
+  grid-auto-flow:column;
+  grid-auto-columns:112px;
+  justify-content:start;
+  gap:8px!important;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+.pdp-gallery-thumb{
+  width:112px!important;
+  height:auto!important;
+  aspect-ratio:1 / 1;
+  min-width:112px;
+}
+.pdp-gallery-thumb-index{
+  left:8px!important;
+  bottom:8px!important;
+  padding:4px 6px!important;
+}
+
+/* Keep the purchase column compact enough to remain paired with the gallery on
+   common laptop/desktop first views without shrinking customer-facing copy. */
+.pdp-top-ux .buybox{padding:48px!important}
+.pdp-top-ux .divider{margin-block:16px!important}
+.pdp-top-ux .purchase-assurance{margin-top:16px!important}
+.pdp-top-ux .purchase-assurance>button,
+.pdp-top-ux .purchase-assurance>div{
+  min-height:56px!important;
+  padding:12px 16px!important;
+}
+
+@container (max-width:1040px){
+  .pdp-gallery-ux{
+    height:680px!important;
+    min-height:680px!important;
+    max-height:none;
+  }
+  .pdp-top-ux .buybox{padding:48px var(--page-gutter)!important}
+}
+
+@media(max-width:760px){
+  .image-overlay-hero{min-height:480px;padding-block:64px}
+  .prefooter-image-cta{min-height:400px;padding-block:64px!important}
+  .btn{width:100%;white-space:normal}
+  .action-row{width:100%;flex-direction:column;align-items:stretch}
+  .pdp-gallery-ux{height:600px!important;min-height:600px!important;padding:16px!important}
+  .pdp-gallery-thumbs{grid-auto-columns:96px}
+  .pdp-gallery-thumb{width:96px!important;min-width:96px}
+}
