@@ -25,12 +25,21 @@
     <span class="preview-page-status"></span>
     <button type="button" data-preview-next aria-label="Next page">→</button>
     <button type="button" data-preview-exit>Review View</button>
+    <button type="button" data-preview-locale aria-label="Switch Japanese / English">JA / EN</button>
   `;
   body.appendChild(dock);
 
   const status=dock.querySelector('.preview-page-status');
   const prevButton=dock.querySelector('[data-preview-prev]');
   const nextButton=dock.querySelector('[data-preview-next]');
+  const localeButton=dock.querySelector('[data-preview-locale]');
+
+  function updateLocaleState(){
+    if(!localeButton) return;
+    const isJA=typeof wireframeLocale!=='undefined' && wireframeLocale==='ja';
+    localeButton.title=isJA?'Switch to English':'日本語に切り替え';
+    localeButton.setAttribute('aria-label',localeButton.title);
+  }
 
   function updateStatus(){
     const index=previewPageOrder.indexOf(current);
@@ -38,6 +47,7 @@
     status.textContent=`${label} · ${index+1}/${previewPageOrder.length}`;
     prevButton.disabled=index<=0;
     nextButton.disabled=index<0||index>=previewPageOrder.length-1;
+    updateLocaleState();
   }
 
   function updateModeUrl(enabled){
@@ -64,8 +74,16 @@
     updateStatus();
   }
 
+  function toggleLocale(){
+    if(typeof setWireframeLocale!=='function') return;
+    const next=(typeof wireframeLocale!=='undefined' && wireframeLocale==='ja')?'en':'ja';
+    setWireframeLocale(next);
+    updateStatus();
+  }
+
   enterButton.addEventListener('click',()=>setPreview(true));
   dock.querySelector('[data-preview-exit]').addEventListener('click',()=>setPreview(false));
+  localeButton?.addEventListener('click',toggleLocale);
   prevButton.addEventListener('click',()=>movePage(-1));
   nextButton.addEventListener('click',()=>movePage(1));
 
