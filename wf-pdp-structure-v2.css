@@ -1,4 +1,4 @@
-/* AUX USA / PDP structure alignment v3
+/* AUX USA / PDP structure alignment v4
    Content Master: primary use value belongs inside Product Features.
    Product Details is a compact buybox disclosure; media remains visible while
    the right purchase column grows in normal page flow.
@@ -35,6 +35,28 @@
   gap:40px!important;
 }
 .pdp-integrated-feature-grid .pdp-proof-equal-card{min-width:0}
+
+/* Full-width product feature image between Product Features and Compare Products.
+   Height mirrors the desktop About AUX image band. */
+.pdp-feature-image-band{
+  --section-image:none;
+  position:relative;
+  width:100%;
+  height:480px;
+  min-height:480px;
+  overflow:hidden;
+  background:#f5f5f5 var(--section-image) center/cover no-repeat;
+}
+.pdp-feature-image-band>.photo-label{
+  position:absolute!important;
+  top:24px!important;
+  left:24px!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:max-content;
+  max-width:calc(100% - 48px);
+  height:auto!important;
+}
 
 /* 02. GIR-like hero reading behavior
    The page owns scrolling. The gallery stays pinned while the purchase column
@@ -174,5 +196,6 @@
   .pdp-integrated-feature-visual{min-height:320px}
   .pdp-integrated-feature-copy{padding-top:32px}
   .pdp-spec-accordion-grid{grid-template-columns:1fr}
+  .pdp-feature-image-band{height:400px;min-height:400px}
   .restored-pdp-about.pdp-about-image-band{min-height:400px}
 }
