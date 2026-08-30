@@ -1,0 +1,47 @@
+/* AUX USA / Section Surface System v1.0
+   Top-level page sections use four surface categories only:
+   1. White
+   2. Neutral #989898
+   3. Black
+   4. Image + readability gradient
+
+   Media placeholders keep their own light surfaces; this file governs section
+   backgrounds, not every component/image well.
+*/
+:root{
+  --section-neutral:#989898;
+  --section-neutral-text:#151515;
+  --section-neutral-muted:#2b2d2b;
+}
+
+/* Default editorial / commerce section = white. */
+.page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+  background:#fff!important;
+}
+
+/* The former pale green neutral section is now the single gray surface. */
+.page > section.section.soft:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band),
+.page > section.section.warm:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band),
+.page > section.section.cool:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+  background:var(--section-neutral)!important;
+  color:var(--section-neutral-text)!important;
+  --text-muted:var(--section-neutral-muted);
+  --text-subtle:var(--section-neutral-muted);
+  --text-secondary:var(--section-neutral-muted);
+}
+
+/* Dark section = black. */
+.page > section.section.dark:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+  background:#151515!important;
+}
+
+/* Explicit exception required by PDP content/design: Product Features is white. */
+.page > .restored-pdp-product-features{
+  background:#fff!important;
+  --text-muted:#4f524e;
+  --text-subtle:#4f524e;
+  --text-secondary:#4f524e;
+}
+
+/* Image-backed sections continue to use the shared image + vertical gradient
+   component and are deliberately excluded from flat-surface normalization. */
