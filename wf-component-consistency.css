@@ -1,4 +1,4 @@
-/* AUX USA / Component Consistency v1.1
+/* AUX USA / Component Consistency v1.2
    Keeps repeated editorial / commerce modules visually identical across pages.
 */
 
@@ -71,17 +71,86 @@
 
 /* --------------------------------------------------------------------------
    HOME / HERO
-   Keep one category/status label only; pagination is centered independently.
+   Keep one category/status label only; pagination aligns with the copy edge.
    -------------------------------------------------------------------------- */
 .product-hero-bottom{
-  justify-content:center!important;
+  justify-content:flex-start!important;
 }
 .product-hero-bottom>span:first-child{
   display:none!important;
 }
 .product-hero-bottom .pager{
-  margin-left:auto!important;
-  margin-right:auto!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* --------------------------------------------------------------------------
+   HOME / SHOP BY CATEGORY
+   The category cards are photographic navigation cards, using the same
+   top-to-bottom readability gradient as other image-backed components.
+   -------------------------------------------------------------------------- */
+.cat-grid .cat.home-category-image-card{
+  --section-image:none;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  color:var(--on-dark)!important;
+  background:#7f847f!important;
+  border-color:transparent!important;
+}
+.cat-grid .cat.home-category-image-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-color:#7f847f;
+  background-image:var(--section-image);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.cat-grid .cat.home-category-image-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    var(--overlay-top) 0%,
+    var(--overlay-upper) 30%,
+    var(--overlay-mid) 66%,
+    var(--overlay-bottom) 100%
+  );
+}
+.cat-grid .cat.home-category-image-card>div{
+  position:relative;
+  z-index:1;
+  width:100%;
+}
+.cat-grid .cat.home-category-image-card .eyebrow{
+  color:var(--on-dark-muted)!important;
+}
+.cat-grid .cat.home-category-image-card .h3,
+.cat-grid .cat.home-category-image-card p{
+  color:var(--on-dark)!important;
+}
+.cat-grid .cat.home-category-image-card p{
+  color:rgba(255,255,255,.92)!important;
+}
+.cat-grid .cat.home-category-image-card>.photo-label{
+  position:absolute!important;
+  top:24px!important;
+  left:24px!important;
+  right:auto!important;
+  bottom:auto!important;
+  z-index:2;
+  width:max-content;
+  max-width:calc(100% - 48px);
+  height:auto!important;
+  white-space:normal;
 }
 
 /* --------------------------------------------------------------------------
@@ -101,6 +170,80 @@
 .home-use-copy .use-link{
   margin-top:16px!important;
   padding-top:0!important;
+}
+
+/* --------------------------------------------------------------------------
+   TEXT MEASURE / WRAPPING
+   Long editorial leads get enough measure to avoid accidental, overly tight
+   wrapping. PDP exception copy uses deliberate English line breaks instead.
+   -------------------------------------------------------------------------- */
+.collection-value-copy>.lead{
+  max-width:920px!important;
+}
+.collection-precision-layout{
+  grid-template-columns:minmax(0,496px) minmax(0,720px)!important;
+}
+.collection-precision-copy .lead{
+  max-width:720px!important;
+}
+
+.image-overlay-hero.wide-hero-copy>.h1{
+  max-width:1120px!important;
+}
+.image-overlay-hero.wide-hero-copy>.lead{
+  max-width:880px!important;
+}
+
+.inuse-prefooter.wide-prefooter-copy .brand-intro{
+  max-width:960px!important;
+}
+.inuse-prefooter.wide-prefooter-copy .brand-intro>.h2{
+  max-width:960px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.inuse-prefooter.wide-prefooter-copy .brand-intro>.lead{
+  max-width:900px!important;
+}
+
+.why-back-tools.wide-prefooter-copy .brand-intro>.h2{
+  max-width:960px!important;
+}
+.why-back-tools.wide-prefooter-copy .brand-intro>.lead{
+  max-width:920px!important;
+}
+
+.pdp-reading-head{
+  max-width:1040px!important;
+}
+.pdp-reading-head>.h2{
+  max-width:1040px!important;
+}
+.pdp-reading-head>.lead{
+  max-width:960px!important;
+}
+.pdp-compare-reading>.lead{
+  max-width:920px!important;
+}
+.pdp-wide-explore{
+  max-width:1040px!important;
+}
+.pdp-wide-explore>.lead{
+  max-width:920px!important;
+}
+br.intentional-break{display:block}
+
+@container (max-width:1320px){
+  .collection-precision-layout{
+    grid-template-columns:minmax(0,44%) minmax(0,56%)!important;
+  }
+}
+
+@container (max-width:1040px){
+  .collection-precision-layout{
+    grid-template-columns:1fr!important;
+  }
+  br.intentional-break{display:none}
 }
 
 @media(max-width:760px){
