@@ -1,6 +1,7 @@
-/* AUX USA / PDP structure alignment v3
+/* AUX USA / PDP structure alignment v4
    - Product Features contains primary use value + 2–4 product features.
    - Product Details lives inside the hero buybox below Compare similar tools.
+   - A full-width feature image follows the three Product Feature cards.
    - About AUX remains an image-backed editorial band.
 */
 (function(){
@@ -31,6 +32,18 @@
     `;
     primary.replaceWith(section);
     features.remove();
+  }
+
+  function insertFeatureImageBand(){
+    if(current!=='pdp') return;
+    const features=document.querySelector('.restored-pdp-product-features');
+    if(!features || document.querySelector('.pdp-feature-image-band')) return;
+
+    const band=document.createElement('section');
+    band.className='pdp-feature-image-band';
+    band.setAttribute('aria-label',t('商品特徴の使用シーン画像','Product feature lifestyle image'));
+    band.innerHTML=`<span class="photo-label">${t('撮影：商品特徴が伝わる全幅の使用シーン / 商品＋手＋料理','Full-width feature image / product + hand + food')}</span>`;
+    features.insertAdjacentElement('afterend',band);
   }
 
   function detailsMarkup(){
@@ -110,6 +123,7 @@
 
   function applyPdpStructure(){
     mergePrimaryUseAndFeatures();
+    insertFeatureImageBand();
     moveProductDetailsIntoBuybox();
     convertAboutAuxToImageBand();
   }
