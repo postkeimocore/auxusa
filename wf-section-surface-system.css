@@ -1,4 +1,4 @@
-/* AUX USA / Section Surface System v1.0
+/* AUX USA / Section Surface System v1.1
    Top-level page sections use four surface categories only:
    1. White
    2. Neutral #989898
@@ -14,15 +14,16 @@
   --section-neutral-muted:#2b2d2b;
 }
 
-/* Default editorial / commerce section = white. */
-.page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+/* Default editorial / commerce section = white. Image-backed components are
+   excluded so their image layer + black gradient remain visible. */
+.page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
   background:#fff!important;
 }
 
 /* The former pale green neutral section is now the single gray surface. */
-.page > section.section.soft:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band),
-.page > section.section.warm:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band),
-.page > section.section.cool:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+.page > section.section.soft:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
+.page > section.section.warm:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
+.page > section.section.cool:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
   background:var(--section-neutral)!important;
   color:var(--section-neutral-text)!important;
   --text-muted:var(--section-neutral-muted);
@@ -30,8 +31,8 @@
   --text-secondary:var(--section-neutral-muted);
 }
 
-/* Dark section = black. */
-.page > section.section.dark:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band){
+/* Dark section = black unless it is explicitly image-backed. */
+.page > section.section.dark:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
   background:#151515!important;
 }
 
@@ -42,6 +43,3 @@
   --text-subtle:#4f524e;
   --text-secondary:#4f524e;
 }
-
-/* Image-backed sections continue to use the shared image + vertical gradient
-   component and are deliberately excluded from flat-surface normalization. */
