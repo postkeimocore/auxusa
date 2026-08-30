@@ -1,4 +1,4 @@
-/* AUX USA / In Use Redesign v1.0
+/* AUX USA / In Use Redesign v1.1
    Situation cards + repeated scene/product module.
 */
 
@@ -78,7 +78,7 @@
 .inuse-scene-visual{
   position:relative;
   min-height:720px;
-  background:var(--soft);
+  background:var(--surface-soft);
   overflow:hidden;
 }
 .inuse-scene-visual>.photo-label{
@@ -101,7 +101,7 @@
 .inuse-scene-copy>.eyebrow{margin-bottom:0!important}
 .inuse-scene-copy>.eyebrow + .h2{margin-top:20px!important}
 .inuse-scene-copy>.h2 + .lead{margin-top:16px!important}
-.inuse-scene-copy>.lead{max-width:680px;color:var(--text-secondary)!important}
+.inuse-scene-copy>.lead{max-width:680px;color:var(--text-muted)!important}
 
 .inuse-related-grid{
   margin-top:40px;
@@ -117,7 +117,7 @@
 .inuse-related-img{
   width:100%;
   aspect-ratio:1 / 1;
-  background:var(--soft);
+  background:var(--surface-soft);
 }
 .inuse-related-title{
   margin-top:16px;
@@ -125,13 +125,13 @@
   font-size:16px;
   line-height:24px;
   font-weight:600;
-  color:var(--text-primary);
+  color:var(--text);
 }
 .inuse-related-card p{
   margin-top:8px!important;
   font-size:16px;
   line-height:24px;
-  color:var(--text-secondary)!important;
+  color:var(--text-muted)!important;
 }
 .inuse-scene-cta{
   margin-top:32px;
