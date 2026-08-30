@@ -1,0 +1,38 @@
+/* AUX USA / PDP compact purchase assurance */
+.restored-pdp-page .purchase-assurance.purchase-assurance-compact{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:0!important;
+  margin-top:16px!important;
+  border-top:1px solid var(--border,#d9dad6);
+  border-bottom:1px solid var(--border,#d9dad6);
+}
+.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link{
+  min-height:40px!important;
+  width:100%;
+  padding:8px 0!important;
+  margin:0!important;
+  border:0!important;
+  border-bottom:1px solid var(--border,#d9dad6)!important;
+  background:transparent!important;
+  color:var(--text,#151515)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  font:500 14px/24px var(--sans,sans-serif)!important;
+  text-align:left!important;
+  white-space:nowrap;
+}
+.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link:last-child{
+  border-bottom:0!important;
+}
+.restored-pdp-page .purchase-assurance-compact button.purchase-assurance-link{
+  cursor:pointer;
+}
+.restored-pdp-page .purchase-assurance-compact button.purchase-assurance-link:hover{
+  opacity:.68;
+}
+.restored-pdp-page .purchase-assurance-compact .purchase-assurance-static{
+  cursor:default;
+}
