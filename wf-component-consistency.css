@@ -1,4 +1,4 @@
-/* AUX USA / Component Consistency v1.2
+/* AUX USA / Component Consistency v1.3
    Keeps repeated editorial / commerce modules visually identical across pages.
 */
 
@@ -184,7 +184,20 @@
   grid-template-columns:minmax(0,496px) minmax(0,720px)!important;
 }
 .collection-precision-copy .lead{
-  max-width:720px!important;
+  max-width:960px!important;
+}
+.collection-precision-copy.prefooter-image-cta .split,
+.collection-precision-copy.prefooter-image-cta .split>div:not(:has(.visualbox)){
+  width:100%!important;
+  max-width:1000px!important;
+}
+.collection-precision-copy.prefooter-image-cta .h2{
+  max-width:1000px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.collection-precision-copy.prefooter-image-cta .lead{
+  max-width:960px!important;
 }
 
 .image-overlay-hero.wide-hero-copy>.h1{
