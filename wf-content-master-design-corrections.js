@@ -114,6 +114,16 @@
     });
   }
 
+  function normalizeCollectionCtas(){
+    if(!isJA() || !['cook','serve','table'].includes(current)) return;
+    const buttons=[...document.querySelectorAll('.master-collection-about-aux .action-row .btn')];
+    buttons.forEach(btn=>{
+      btn.style.width='240px';
+      btn.style.minWidth='240px';
+      btn.style.maxWidth='240px';
+    });
+  }
+
   function applyCorrections(){
     if(current==='home'){
       restoreHomeHero();
@@ -123,6 +133,7 @@
     if(current==='why') restoreWhyAuxFeature();
     shortenInUseJumpCopy();
     fixTableUSContext();
+    normalizeCollectionCtas();
   }
 
   const previousRender=render;
