@@ -1,4 +1,4 @@
-/* AUX USA / Component Consistency v1.3
+/* AUX USA / Component Consistency v1.4
    Keeps repeated editorial / commerce modules visually identical across pages.
 */
 
@@ -136,6 +136,21 @@
 .cat-grid .cat.home-category-image-card .h3,
 .cat-grid .cat.home-category-image-card p{
   color:var(--on-dark)!important;
+}
+.cat-grid .cat.home-category-image-card .h3{
+  width:100%;
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.cat-grid .cat.home-category-image-card .h3::after{
+  content:'→';
+  font-family:var(--sans);
+  font-size:24px;
+  line-height:1;
+  font-weight:400;
+  flex:0 0 auto;
 }
 .cat-grid .cat.home-category-image-card p{
   color:rgba(255,255,255,.92)!important;
