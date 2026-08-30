@@ -1,4 +1,4 @@
-/* AUX USA / In Use Redesign v1.2
+/* AUX USA / In Use Redesign v1.3
    Situation cards + alternating scene/product modules.
 */
 
@@ -48,7 +48,22 @@
 .use-jump>.h3,
 .use-jump>p{position:relative;z-index:1}
 .use-jump>.eyebrow{color:var(--on-dark-muted)!important}
-.use-jump>.h3{color:var(--on-dark)!important}
+.use-jump>.h3{
+  color:var(--on-dark)!important;
+  width:100%;
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.use-jump>.h3::after{
+  content:'↓';
+  font-family:var(--sans);
+  font-size:24px;
+  line-height:1;
+  font-weight:400;
+  flex:0 0 auto;
+}
 .use-jump>p{color:rgba(255,255,255,.92)!important}
 .use-jump>.use-photo-label{
   position:absolute!important;
