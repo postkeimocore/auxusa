@@ -1,0 +1,138 @@
+/* AUX USA / Color System v1.0
+   Customer-facing text uses four semantic colors only:
+   - Primary text: #151515
+   - Secondary text: #4f524e
+   - Inverse primary: #ffffff
+   - Inverse secondary: #c6cac4
+
+   Secondary text remains above WCAG AA 4.5:1 on the current white / soft /
+   category surfaces. Interactive labels never use the secondary tone.
+*/
+
+:root{
+  --text:#151515;
+  --text-muted:#4f524e;
+  --text-subtle:#4f524e;
+  --on-dark:#ffffff;
+  --on-dark-muted:#c6cac4;
+  --interactive:#151515;
+  --interactive-inverse:#ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT SURFACE TEXT HIERARCHY
+   -------------------------------------------------------------------------- */
+.page,.site-header{color:var(--text)}
+
+.lead,
+.eyebrow,
+.tiny,
+.caption,
+.product-sub,
+.proof p,
+.shop-category p,
+.collection-benefit p,
+.use-jump p,
+.pdp-value-copy p,
+.pdp-proof-copy p,
+.pdp-proof-main-copy p,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy p,
+.pdp-use-copy p,
+.precision-card p,
+.evidence-card>p,
+.review-overview p,
+.review-placeholder p,
+.review-meta,
+.review-placeholder .meta,
+.pdp-compare-cell.label,
+.spec small,
+.product-hero-bottom,
+.visual-caption{
+  color:var(--text-muted)!important;
+}
+
+/* Sequence/meta markers share the same secondary tone instead of inventing
+   another near-gray. */
+.cat .eyebrow,
+.use-jump .eyebrow,
+.collection-benefit>b,
+.story-step>span,
+.precision-card>span,
+.product-hero-index,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy>.eyebrow{
+  color:var(--text-muted)!important;
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE / AFFORDANCE TEXT
+   -------------------------------------------------------------------------- */
+.globalnav button,
+.actions button,
+.use-link,
+.related-tools button,
+.buybox .review-jump,
+.buybox .compare-jump,
+.filterbar,
+.pdp-gallery-thumb-index,
+.product-name,
+.price,
+.price-big,
+.faq-q,
+.field label{
+  color:var(--interactive)!important;
+  opacity:1!important;
+}
+
+/* Buttons always own explicit foreground/background. */
+.btn{
+  color:var(--interactive)!important;
+  background:#fff!important;
+  border-color:var(--interactive)!important;
+  opacity:1;
+}
+.btn.black,.add{
+  color:#fff!important;
+  background:#151515!important;
+  border-color:#151515!important;
+}
+.btn.ghost{
+  color:var(--interactive)!important;
+  background:transparent!important;
+  border-color:var(--interactive)!important;
+}
+.section.dark .btn,.why-band .btn{
+  color:#151515!important;
+  background:#fff!important;
+  border-color:#fff!important;
+}
+.section.dark .btn.ghost,.why-band .btn.ghost{
+  color:#fff!important;
+  background:transparent!important;
+  border-color:#fff!important;
+}
+
+/* --------------------------------------------------------------------------
+   DARK SURFACES
+   -------------------------------------------------------------------------- */
+.section.dark,.why-band,.site-footer{color:var(--on-dark)}
+.section.dark .lead,
+.section.dark .eyebrow,
+.section.dark .tiny,
+.why-band .lead,
+.why-band .eyebrow,
+.site-footer p{
+  color:var(--on-dark-muted)!important;
+}
+.site-footer .footer-logo,
+.site-footer .footer-col b,
+.site-footer .footer-col span[data-go]{
+  color:var(--interactive-inverse)!important;
+  opacity:1!important;
+}
+
+/* Action labels inside clickable modules remain full-contrast. */
+.clickable .use-link,
+[data-go].use-link,
+[data-anchor] .use-link{
+  color:var(--interactive)!important;
+}
