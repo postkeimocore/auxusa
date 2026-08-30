@@ -1,0 +1,92 @@
+/* AUX USA / Component Consistency v1.0
+   Keeps repeated editorial / commerce modules visually identical across pages.
+*/
+
+/* --------------------------------------------------------------------------
+   REPEATED PRE-FOOTER IMAGE CTA
+   COOK / SERVE / TABLE / PDP use the same centered composition as In Use.
+   -------------------------------------------------------------------------- */
+.prefooter-image-cta{
+  justify-content:center!important;
+  text-align:center!important;
+}
+.prefooter-image-cta .split{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.prefooter-image-cta .split>div:not(:has(.visualbox)),
+.prefooter-image-cta .brand-intro,
+.prefooter-image-cta .pdp-explore-band{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+.prefooter-image-cta .lead{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+  text-indent:0!important;
+  padding-left:0!important;
+}
+.prefooter-image-cta .action-row{
+  justify-content:center!important;
+}
+
+/* --------------------------------------------------------------------------
+   COLLECTION FEATURED PRODUCTS
+   Two featured items still sit on the same three-column product grid as the
+   product listing below; the third column intentionally remains open.
+   -------------------------------------------------------------------------- */
+.collection-featured-tools .featured-two{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  max-width:none!important;
+  gap:40px!important;
+}
+.collection-featured-tools .featured-two .product-img{
+  height:360px!important;
+}
+
+/* --------------------------------------------------------------------------
+   WHY AUX / BACK TO THE TOOLS
+   Product information follows the standard left-aligned product-card anatomy.
+   -------------------------------------------------------------------------- */
+.why-back-tools .product-card,
+.why-back-tools .product-name,
+.why-back-tools .product-sub,
+.why-back-tools .price{
+  text-align:left!important;
+}
+
+/* --------------------------------------------------------------------------
+   DESIGN FOLLOWS USE
+   This compact three-step list uses a tighter title/body relationship than a
+   full section heading.
+   -------------------------------------------------------------------------- */
+.story-step>b + p{
+  margin-top:8px!important;
+}
+
+/* --------------------------------------------------------------------------
+   HOME / FEATURE IN-USE CARD
+   When the left feature card stretches to match the three compact cards, the
+   extra height belongs to the image, never the copy block.
+   -------------------------------------------------------------------------- */
+.home-use-feature{
+  grid-template-rows:minmax(384px,1fr) auto!important;
+  height:100%!important;
+}
+.home-use-copy{
+  height:auto!important;
+  min-height:0!important;
+  padding:24px!important;
+}
+.home-use-copy .use-link{
+  margin-top:16px!important;
+  padding-top:0!important;
+}
+
+@media(max-width:760px){
+  .collection-featured-tools .featured-two{
+    grid-template-columns:1fr!important;
+  }
+}
