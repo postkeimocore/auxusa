@@ -1,5 +1,5 @@
-/* AUX USA / In Use Redesign v1.1
-   Situation cards + repeated scene/product module.
+/* AUX USA / In Use Redesign v1.2
+   Situation cards + alternating scene/product modules.
 */
 
 /* --------------------------------------------------------------------------
@@ -65,7 +65,9 @@
 .use-jump:hover{transform:translateY(-1px)}
 
 /* --------------------------------------------------------------------------
-   IN USE SCENE / IMAGE LEFT + CONTENT RIGHT
+   IN USE SCENE / ALTERNATING IMAGE + CONTENT
+   01,03: image left / copy right
+   02,04: copy left / image right
    -------------------------------------------------------------------------- */
 .inuse-scene{
   width:100%;
@@ -75,6 +77,8 @@
   border-top:1px solid var(--border);
   background:var(--surface);
 }
+#use-plating .inuse-scene-visual,
+#use-small .inuse-scene-visual{order:2}
 .inuse-scene-visual{
   position:relative;
   min-height:720px;
@@ -145,13 +149,19 @@ body.preview-mode .use-photo-label{display:none!important}
 
 @container (max-width:1320px){
   .inuse-scene{grid-template-columns:minmax(0,48%) minmax(0,52%)}
+  #use-plating,
+  #use-small{grid-template-columns:minmax(0,52%) minmax(0,48%)}
   .inuse-scene-copy{padding:48px}
   .inuse-scene-visual{min-height:680px}
   .inuse-related-grid{gap:12px}
 }
 
 @container (max-width:1040px){
-  .inuse-scene{grid-template-columns:1fr}
+  .inuse-scene,
+  #use-plating,
+  #use-small{grid-template-columns:1fr}
+  #use-plating .inuse-scene-visual,
+  #use-small .inuse-scene-visual{order:0}
   .inuse-scene-visual{min-height:520px}
   .inuse-scene-copy{padding:56px var(--page-gutter)}
 }
