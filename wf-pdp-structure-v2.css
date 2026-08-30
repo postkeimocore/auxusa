@@ -1,0 +1,139 @@
+/* AUX USA / PDP structure alignment v2
+   Content Master: primary use value belongs inside Product Features.
+   Also defines accordion specifications and image-backed About AUX.
+*/
+
+/* 01. Product Features = primary use value + 2–4 product features */
+.restored-pdp-product-features{
+  background:var(--base-soft,#f5f6f3)!important;
+}
+.pdp-integrated-feature-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:40px;
+  align-items:stretch;
+}
+.pdp-integrated-feature-visual{
+  position:relative;
+  min-height:480px;
+  background:#e7e9e5;
+}
+.pdp-integrated-feature-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:48px;
+  min-width:0;
+}
+.pdp-integrated-feature-copy .h2{max-width:600px}
+.pdp-integrated-feature-copy .lead{max-width:600px}
+.pdp-integrated-feature-grid{
+  margin-top:64px!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:40px!important;
+}
+.pdp-integrated-feature-grid .pdp-proof-equal-card{
+  min-width:0;
+}
+
+/* 02. Specifications & Care accordion */
+.restored-pdp-specs{
+  background:var(--surface,#fff)!important;
+}
+.pdp-spec-accordion{
+  margin-top:40px;
+  border-bottom:1px solid var(--border,#d9dad6);
+}
+.pdp-spec-accordion details{
+  border-top:1px solid var(--border,#d9dad6);
+}
+.pdp-spec-accordion summary{
+  min-height:72px;
+  padding:16px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  cursor:pointer;
+  list-style:none;
+  font:500 20px/24px var(--display,serif);
+  color:var(--text,#151515);
+}
+.pdp-spec-accordion summary::-webkit-details-marker{display:none}
+.pdp-spec-accordion summary:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.pdp-spec-accordion-icon{
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  border:1px solid var(--border,#d9dad6);
+  display:grid;
+  place-items:center;
+  font:400 20px/1 var(--sans,sans-serif);
+}
+.pdp-spec-accordion-icon::before{content:'+'}
+.pdp-spec-accordion details[open] .pdp-spec-accordion-icon::before{content:'−'}
+.pdp-spec-accordion-panel{
+  padding:0 0 32px;
+}
+.pdp-spec-accordion-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px 40px;
+}
+.pdp-spec-pair{margin:0}
+.pdp-spec-pair dt{
+  margin:0 0 8px;
+  font:500 12px/16px var(--sans,sans-serif);
+  letter-spacing:.06em;
+  color:var(--text-secondary,#4f524e);
+  text-transform:uppercase;
+}
+.pdp-spec-pair dd{
+  margin:0;
+  font:400 16px/24px var(--sans,sans-serif);
+  color:var(--text,#151515);
+}
+
+/* 03. About AUX = full image background + existing vertical black gradient */
+.restored-pdp-about.pdp-about-image-band{
+  min-height:480px;
+  justify-content:center!important;
+  text-align:center;
+}
+.restored-pdp-about.pdp-about-image-band .pdp-brand-trust{
+  display:block!important;
+  width:100%;
+  max-width:880px;
+  margin:0 auto;
+}
+.restored-pdp-about.pdp-about-image-band .pdp-brand-visual{display:none!important}
+.restored-pdp-about.pdp-about-image-band .pdp-brand-copy{
+  max-width:880px;
+  margin:0 auto;
+  text-align:center;
+}
+.restored-pdp-about.pdp-about-image-band .pdp-brand-copy .h2,
+.restored-pdp-about.pdp-about-image-band .pdp-brand-copy .lead,
+.restored-pdp-about.pdp-about-image-band .pdp-brand-copy .eyebrow{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.restored-pdp-about.pdp-about-image-band .pdp-brand-copy .lead{max-width:760px}
+.restored-pdp-about.pdp-about-image-band .action-row{justify-content:center!important}
+
+@container (max-width:1040px){
+  .pdp-integrated-feature-intro{grid-template-columns:1fr}
+  .pdp-integrated-feature-visual{min-height:400px}
+  .pdp-integrated-feature-copy{padding:40px 0 0}
+  .pdp-integrated-feature-grid{grid-template-columns:1fr!important;gap:24px!important;margin-top:48px!important}
+  .pdp-spec-accordion-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:760px){
+  .pdp-integrated-feature-visual{min-height:320px}
+  .pdp-integrated-feature-copy{padding-top:32px}
+  .pdp-spec-accordion summary{min-height:64px;font-size:18px;line-height:24px}
+  .pdp-spec-accordion-grid{grid-template-columns:1fr}
+  .restored-pdp-about.pdp-about-image-band{min-height:400px}
+}
