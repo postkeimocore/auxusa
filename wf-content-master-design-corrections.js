@@ -118,9 +118,9 @@
     if(!isJA() || !['cook','serve','table'].includes(current)) return;
     const buttons=[...document.querySelectorAll('.master-collection-about-aux .action-row .btn')];
     buttons.forEach(btn=>{
-      btn.style.width='240px';
-      btn.style.minWidth='240px';
-      btn.style.maxWidth='240px';
+      btn.style.width='256px';
+      btn.style.minWidth='256px';
+      btn.style.maxWidth='256px';
     });
   }
 
