@@ -1,32 +1,35 @@
-/* AUX USA / PDP compact purchase assurance */
+/* AUX USA / PDP compact purchase assurance v2
+   Three purchase-policy links share one quiet horizontal row.
+*/
 .restored-pdp-page .purchase-assurance.purchase-assurance-compact{
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:0!important;
-  margin-top:16px!important;
-  border-top:1px solid var(--border,#d9dad6);
-  border-bottom:1px solid var(--border,#d9dad6);
-}
-.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link{
-  min-height:40px!important;
-  width:100%;
-  padding:8px 0!important;
-  margin:0!important;
-  border:0!important;
-  border-bottom:1px solid var(--border,#d9dad6)!important;
-  background:transparent!important;
-  color:var(--text,#151515)!important;
   display:flex!important;
   flex-direction:row!important;
+  flex-wrap:nowrap!important;
   align-items:center!important;
-  justify-content:space-between!important;
-  gap:16px!important;
+  justify-content:flex-start!important;
+  gap:32px!important;
+  margin-top:16px!important;
+  padding:8px 0!important;
+  border:0!important;
+  background:transparent!important;
+}
+.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link{
+  min-height:0!important;
+  width:auto!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:var(--text,#151515)!important;
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:6px!important;
   font:500 14px/24px var(--sans,sans-serif)!important;
   text-align:left!important;
-  white-space:nowrap;
-}
-.restored-pdp-page .purchase-assurance-compact .purchase-assurance-link:last-child{
-  border-bottom:0!important;
+  white-space:nowrap!important;
 }
 .restored-pdp-page .purchase-assurance-compact button.purchase-assurance-link{
   cursor:pointer;
@@ -36,4 +39,13 @@
 }
 .restored-pdp-page .purchase-assurance-compact .purchase-assurance-static{
   cursor:default;
+}
+
+@container (max-width:560px){
+  .restored-pdp-page .purchase-assurance.purchase-assurance-compact{
+    gap:20px!important;
+  }
+  .restored-pdp-page .purchase-assurance-compact .purchase-assurance-link{
+    font-size:13px!important;
+  }
 }
