@@ -1,11 +1,12 @@
-/* AUX USA / PDP structure alignment v2
+/* AUX USA / PDP structure alignment v3
    Content Master: primary use value belongs inside Product Features.
-   Also defines accordion specifications and image-backed About AUX.
+   Product Details is a compact buybox disclosure; media remains visible while
+   the right purchase column grows in normal page flow.
 */
 
 /* 01. Product Features = primary use value + 2–4 product features */
 .restored-pdp-product-features{
-  background:var(--base-soft,#f5f6f3)!important;
+  background:#fff!important;
 }
 .pdp-integrated-feature-intro{
   display:grid;
@@ -33,69 +34,104 @@
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:40px!important;
 }
-.pdp-integrated-feature-grid .pdp-proof-equal-card{
-  min-width:0;
+.pdp-integrated-feature-grid .pdp-proof-equal-card{min-width:0}
+
+/* 02. GIR-like hero reading behavior
+   The page owns scrolling. The gallery stays pinned while the purchase column
+   moves; there is no nested scroll area inside the buybox. */
+.restored-pdp-page .pdp-top-ux{
+  position:relative;
+  align-items:start!important;
+}
+.restored-pdp-page .pdp-gallery-ux{
+  position:sticky!important;
+  top:calc(var(--toolbar) + 80px)!important;
+  align-self:start!important;
+  z-index:3;
+  height:clamp(600px,calc(100svh - var(--toolbar) - 80px),800px)!important;
+  min-height:600px!important;
+  max-height:800px!important;
+}
+.preview-mode .restored-pdp-page .pdp-gallery-ux{
+  top:80px!important;
+  height:clamp(680px,calc(100svh - 80px),800px)!important;
+  min-height:680px!important;
+}
+.restored-pdp-page .buybox{
+  position:relative!important;
+  top:auto!important;
+  align-self:start!important;
+  max-height:none!important;
+  height:auto!important;
+  overflow:visible!important;
 }
 
-/* 02. Specifications & Care accordion */
-.restored-pdp-specs{
-  background:var(--surface,#fff)!important;
-}
-.pdp-spec-accordion{
-  margin-top:40px;
-  border-bottom:1px solid var(--border,#d9dad6);
-}
-.pdp-spec-accordion details{
+/* 03. Product Details inside buybox */
+.buybox-product-details{
+  margin-top:24px;
   border-top:1px solid var(--border,#d9dad6);
 }
+.buybox-product-details-title{
+  padding-top:20px;
+  font:600 12px/16px var(--sans,sans-serif);
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--text,#151515);
+}
+.pdp-spec-accordion{
+  margin-top:12px;
+  border-bottom:1px solid var(--border,#d9dad6);
+}
+.pdp-spec-accordion details{border-top:1px solid var(--border,#d9dad6)}
 .pdp-spec-accordion summary{
-  min-height:72px;
-  padding:16px 0;
+  min-height:56px;
+  padding:12px 0;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:24px;
+  gap:16px;
   cursor:pointer;
   list-style:none;
-  font:500 20px/24px var(--display,serif);
+  font:500 16px/24px var(--sans,sans-serif);
   color:var(--text,#151515);
 }
 .pdp-spec-accordion summary::-webkit-details-marker{display:none}
-.pdp-spec-accordion summary:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.pdp-spec-accordion summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 .pdp-spec-accordion-icon{
-  width:32px;
-  height:32px;
-  flex:0 0 32px;
+  width:24px;
+  height:24px;
+  flex:0 0 24px;
   border:1px solid var(--border,#d9dad6);
   display:grid;
   place-items:center;
-  font:400 20px/1 var(--sans,sans-serif);
+  font:400 16px/1 var(--sans,sans-serif);
 }
 .pdp-spec-accordion-icon::before{content:'+'}
 .pdp-spec-accordion details[open] .pdp-spec-accordion-icon::before{content:'−'}
-.pdp-spec-accordion-panel{
-  padding:0 0 32px;
-}
+.pdp-spec-accordion-panel{padding:4px 0 24px}
 .pdp-spec-accordion-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:24px 40px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px 24px;
 }
 .pdp-spec-pair{margin:0}
 .pdp-spec-pair dt{
-  margin:0 0 8px;
+  margin:0 0 4px;
   font:500 12px/16px var(--sans,sans-serif);
   letter-spacing:.06em;
-  color:var(--text-secondary,#4f524e);
+  color:var(--text-muted,#4f524e);
   text-transform:uppercase;
 }
 .pdp-spec-pair dd{
   margin:0;
-  font:400 16px/24px var(--sans,sans-serif);
+  font:400 14px/20px var(--sans,sans-serif);
   color:var(--text,#151515);
 }
 
-/* 03. About AUX = full image background + existing vertical black gradient */
+/* Standalone specification section is intentionally retired. */
+.restored-pdp-specs{display:none!important}
+
+/* 04. About AUX = full image background + existing vertical black gradient */
 .restored-pdp-about.pdp-about-image-band{
   min-height:480px;
   justify-content:center!important;
@@ -127,13 +163,16 @@
   .pdp-integrated-feature-visual{min-height:400px}
   .pdp-integrated-feature-copy{padding:40px 0 0}
   .pdp-integrated-feature-grid{grid-template-columns:1fr!important;gap:24px!important;margin-top:48px!important}
-  .pdp-spec-accordion-grid{grid-template-columns:1fr 1fr}
+  .restored-pdp-page .pdp-gallery-ux,
+  .preview-mode .restored-pdp-page .pdp-gallery-ux{
+    position:relative!important;
+    top:auto!important;
+  }
 }
 
 @media(max-width:760px){
   .pdp-integrated-feature-visual{min-height:320px}
   .pdp-integrated-feature-copy{padding-top:32px}
-  .pdp-spec-accordion summary{min-height:64px;font-size:18px;line-height:24px}
   .pdp-spec-accordion-grid{grid-template-columns:1fr}
   .restored-pdp-about.pdp-about-image-band{min-height:400px}
 }
