@@ -1,6 +1,7 @@
-/* AUX USA / PDP structure alignment v2
-   Applies the Content Master rule that primary use value and product features
-   belong to one Product Features section.
+/* AUX USA / PDP structure alignment v3
+   - Product Features contains primary use value + 2–4 product features.
+   - Product Details lives inside the hero buybox below Compare similar tools.
+   - About AUX remains an image-backed editorial band.
 */
 (function(){
   function isJA(){
@@ -32,16 +33,11 @@
     features.remove();
   }
 
-  function convertSpecificationsToAccordion(){
-    if(current!=='pdp') return;
-    const section=document.querySelector('.restored-pdp-specs');
-    if(!section || section.dataset.accordionReady==='true') return;
-
-    section.innerHTML=`
-      <div class="eyebrow">${t('商品仕様・お手入れ','SPECIFICATIONS & CARE')}</div>
-      <h2 class="display h2">${t('商品仕様','Product Details')}</h2>
-      <div class="pdp-spec-accordion">
-        <details open>
+  function detailsMarkup(){
+    return `
+      <div class="buybox-product-details-title">${t('商品詳細','Product Details')}</div>
+      <div class="pdp-spec-accordion buybox-spec-accordion">
+        <details>
           <summary><span>${t('サイズ・材質','Dimensions & Material')}</span><span class="pdp-spec-accordion-icon" aria-hidden="true"></span></summary>
           <div class="pdp-spec-accordion-panel"><div class="pdp-spec-accordion-grid">
             <dl class="pdp-spec-pair"><dt>${t('サイズ','Size')}</dt><dd>—</dd></dl>
@@ -63,9 +59,34 @@
             <dl class="pdp-spec-pair"><dt>${t('使用上の注意','Precautions')}</dt><dd>—</dd></dl>
           </div></div>
         </details>
-      </div>
-    `;
-    section.dataset.accordionReady='true';
+      </div>`;
+  }
+
+  function moveProductDetailsIntoBuybox(){
+    if(current!=='pdp') return;
+    const buybox=document.querySelector('.pdp-top-ux .buybox');
+    const compare=buybox?.querySelector('.compare-jump');
+    if(!buybox || !compare) return;
+
+    /* Remove the legacy one-line specification hint and its redundant divider. */
+    [...buybox.querySelectorAll(':scope > .tiny')].forEach(node=>{
+      const text=node.textContent.trim();
+      if(/Stainless steel\s*\/\s*Made in Japan\s*\/\s*Care details/i.test(text) || /ステンレス鋼\s*\/\s*日本製\s*\/\s*お手入れ詳細/.test(text)){
+        const prev=node.previousElementSibling;
+        if(prev?.classList.contains('divider')) prev.remove();
+        node.remove();
+      }
+    });
+
+    if(!buybox.querySelector('.buybox-product-details')){
+      const details=document.createElement('div');
+      details.className='buybox-product-details';
+      details.innerHTML=detailsMarkup();
+      compare.insertAdjacentElement('afterend',details);
+    }
+
+    /* Product Details is a purchase-side disclosure, not a standalone section. */
+    document.querySelector('.restored-pdp-specs')?.remove();
   }
 
   function convertAboutAuxToImageBand(){
@@ -89,7 +110,7 @@
 
   function applyPdpStructure(){
     mergePrimaryUseAndFeatures();
-    convertSpecificationsToAccordion();
+    moveProductDetailsIntoBuybox();
     convertAboutAuxToImageBand();
   }
 
