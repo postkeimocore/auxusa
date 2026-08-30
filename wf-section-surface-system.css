@@ -1,4 +1,4 @@
-/* AUX USA / Section Surface System v1.2
+/* AUX USA / Section Surface System v1.3
    Top-level page sections use four surface categories only:
    1. White
    2. Neutral #f5f5f5
@@ -45,13 +45,18 @@
 }
 
 /* Hero neutral surfaces: same #f5f5f5 language on Home copy and PDP product media. */
-.master-home-hero-copy{
+.master-home-hero-copy,
+.restored-home-hero .product-hero-panel{
   background:var(--section-neutral)!important;
 }
 .master-pdp-top .pdp-gallery-ux,
 .master-pdp-top .pdp-gallery-stage,
 .master-pdp-top .pdp-gallery-thumbs,
-.master-pdp-top .pdp-gallery-thumb{
+.master-pdp-top .pdp-gallery-thumb,
+.restored-pdp-page .pdp-gallery-ux,
+.restored-pdp-page .pdp-gallery-stage,
+.restored-pdp-page .pdp-gallery-thumbs,
+.restored-pdp-page .pdp-gallery-thumb{
   background:var(--section-neutral)!important;
 }
 
