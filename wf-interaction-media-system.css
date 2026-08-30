@@ -1,13 +1,13 @@
-/* AUX USA / Interaction & Media System v1.1
-   Shared visual components for action affordance, image-overlay sections and
-   the PDP first-view gallery.
+/* AUX USA / Interaction & Media System v1.2
+   Shared visual components for action affordance, image-overlay sections,
+   sticky commerce header and the PDP first-view gallery.
 
    Principles
    - CTA must read as an action before the label is read.
    - Image-backed copy always owns a readability layer.
    - The readability layer is a top-to-bottom black gradient, not a flat veil.
-   - PDP secondary media stays visible inside the first view and uses square
-     thumbnails.
+   - PDP secondary media stays visible inside the first view and uses square thumbnails.
+   - Review View and True-size Preview must share the same component behavior.
 */
 
 :root{
@@ -18,10 +18,49 @@
   --overlay-upper:rgba(0,0,0,.16);
   --overlay-mid:rgba(0,0,0,.42);
   --overlay-bottom:rgba(0,0,0,.84);
+  --label-heading-gap:20px;
+  --heading-body-gap:16px;
 }
 
 /* ========================================================================== 
-   01. CTA BUTTON COMPONENT
+   00. STICKY SITE HEADER
+   ========================================================================== */
+.workspace{overflow:visible!important}
+.site-header{
+  position:sticky!important;
+  top:var(--toolbar)!important;
+  z-index:80!important;
+  box-shadow:0 1px 0 rgba(0,0,0,.08);
+}
+.preview-mode .site-header{top:0!important}
+
+/* ========================================================================== 
+   01. GLOBAL CONTENT PROXIMITY
+   Label → heading is intentionally wider than heading → body.
+   ========================================================================== */
+.page .eyebrow{margin-bottom:0!important}
+.page .eyebrow + .h1,
+.page .eyebrow + .h2,
+.page .eyebrow + .h3{
+  margin-top:var(--label-heading-gap)!important;
+}
+.product-hero-top + .h1{margin-top:var(--label-heading-gap)!important}
+
+.page .h1 + .lead,
+.page .h2 + .lead,
+.page .h3 + .lead,
+.page .h3 + p,
+.proof b + p,
+.shop-category b + p,
+.evidence-card>b + p,
+.precision-card b + p,
+.story-step b + p,
+.review-placeholder b + p{
+  margin-top:var(--heading-body-gap)!important;
+}
+
+/* ========================================================================== 
+   02. CTA BUTTON COMPONENT
    ========================================================================== */
 .btn{
   min-height:var(--cta-height)!important;
@@ -44,6 +83,9 @@
 .btn:hover{transform:translateY(-1px);opacity:1!important}
 .btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 
+/* Paired actions use the same visual width instead of sizing to label length. */
+.balanced-cta-row .btn{width:208px;min-width:208px}
+
 /* Primary commerce action remains distinct from page-navigation CTA. */
 .add{
   min-height:56px!important;
@@ -52,21 +94,27 @@
 }
 
 /* ========================================================================== 
-   02. IMAGE OVERLAY HERO / PRE-FOOTER CTA
+   03. IMAGE OVERLAY HERO / PRE-FOOTER CTA
    Image itself is supplied later through --section-image. Wireframe keeps a
    neutral image placeholder behind the exact same overlay stack.
    ========================================================================== */
 .image-overlay-hero,
-.prefooter-image-cta{
+.prefooter-image-cta,
+.shop-category{
   --section-image:none;
   position:relative;
   isolation:isolate;
   overflow:hidden;
+}
+
+.image-overlay-hero,
+.prefooter-image-cta{
   color:var(--on-dark)!important;
   background:#7f847f!important;
 }
 .image-overlay-hero::before,
-.prefooter-image-cta::before{
+.prefooter-image-cta::before,
+.shop-category::before{
   content:'';
   position:absolute;
   inset:0;
@@ -78,7 +126,8 @@
   background-repeat:no-repeat;
 }
 .image-overlay-hero::after,
-.prefooter-image-cta::after{
+.prefooter-image-cta::after,
+.shop-category::after{
   content:'';
   position:absolute;
   inset:0;
@@ -99,7 +148,8 @@
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  align-items:flex-start;
+  align-items:center;
+  text-align:center;
 }
 .image-overlay-hero>.h1,
 .image-overlay-hero>.lead,
@@ -107,8 +157,8 @@
   position:relative;
   z-index:1;
 }
-.image-overlay-hero>.h1{max-width:880px}
-.image-overlay-hero>.lead{max-width:680px;color:var(--on-dark)!important}
+.image-overlay-hero>.h1{max-width:880px;margin-inline:auto!important}
+.image-overlay-hero>.lead{max-width:680px;color:var(--on-dark)!important;margin-left:auto!important;margin-right:auto!important}
 .image-overlay-hero>.eyebrow{color:var(--on-dark-muted)!important}
 
 .prefooter-image-cta{
@@ -128,14 +178,15 @@
 
 /* Collection pre-footer previously used a side image. Once the whole section
    becomes the image, the side visual is redundant and the copy becomes the
-   foreground content block. */
+   foreground content block. Hide the media-bearing column regardless of its
+   DOM order so Review View cannot expose a stray placeholder block. */
 .prefooter-image-cta .split{
   display:block!important;
   width:100%;
   max-width:760px;
 }
-.prefooter-image-cta .split>div:first-child{display:none!important}
-.prefooter-image-cta .split>div:last-child{max-width:760px}
+.prefooter-image-cta .split>div:has(.visualbox){display:none!important}
+.prefooter-image-cta .split>div:not(:has(.visualbox)){max-width:760px}
 .prefooter-image-cta .brand-intro,
 .prefooter-image-cta .pdp-explore-band{
   width:100%;
@@ -144,6 +195,24 @@
   text-align:left!important;
 }
 .prefooter-image-cta .action-row{justify-content:flex-start!important}
+
+/* In Use closing section is an editorial bridge and stays centered. */
+.inuse-prefooter{
+  justify-content:center!important;
+  text-align:center!important;
+}
+.inuse-prefooter .brand-intro{
+  margin-inline:auto!important;
+  text-align:center!important;
+}
+.inuse-prefooter .brand-intro .lead{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+  padding-left:0!important;
+  text-indent:0!important;
+}
+.inuse-prefooter .action-row{justify-content:center!important}
 
 /* CTA states on photographic backgrounds. Filled = primary, outline = secondary. */
 .image-overlay-hero .btn.black,
@@ -160,17 +229,113 @@
   backdrop-filter:blur(2px);
 }
 
-/* Wireframe-only photography note. Preview mode already hides .photo-label. */
+/* Wireframe-only photography notes. Explicitly reset the base bottom anchor;
+   otherwise top + bottom stretches the label into a large white panel. */
 .image-overlay-hero>.photo-label,
 .prefooter-image-cta>.photo-label{
-  position:absolute;
+  position:absolute!important;
   z-index:2;
-  top:24px;
-  left:24px;
+  top:24px!important;
+  left:24px!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:max-content;
+  height:auto!important;
+  max-width:min(360px,calc(100% - 48px));
+  white-space:normal;
 }
 
 /* ========================================================================== 
-   03. PDP FIRST-VIEW GALLERY
+   04. SHOP ALL CATEGORY IMAGE CARDS
+   ========================================================================== */
+.shop-category{
+  min-height:240px;
+  padding:24px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  color:#fff!important;
+  background:#7f847f!important;
+}
+.shop-category>b,
+.shop-category>p{
+  position:relative;
+  z-index:1;
+  color:#fff!important;
+}
+.shop-category>b{
+  width:100%;
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.shop-category>b::after{
+  content:'→';
+  font-family:var(--sans);
+  font-size:24px;
+  line-height:1;
+  font-weight:400;
+  flex:0 0 auto;
+}
+.shop-category>p{color:rgba(255,255,255,.9)!important}
+.shop-category:hover{transform:translateY(-1px)}
+
+/* ========================================================================== 
+   05. WHY AUX / REPEATED PRODUCT MODULES
+   ========================================================================== */
+/* Standard product grid width: Back to the tools no longer creates a narrow,
+   one-off product-card treatment. */
+.why-back-tools .brand-intro{
+  max-width:none!important;
+  width:100%!important;
+}
+.why-back-tools .brand-intro>.h2,
+.why-back-tools .brand-intro>.lead,
+.why-back-tools .brand-intro>.eyebrow{
+  max-width:760px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center;
+}
+.why-back-tools .product-strip{width:100%}
+.why-back-tools .action-row{justify-content:center!important}
+
+/* Evidence cards own bottom padding rather than relying on a paragraph margin. */
+.evidence-card{padding-bottom:24px!important}
+.evidence-card>p{margin-bottom:0!important}
+
+/* Step headings belong to the editorial serif hierarchy. */
+.story-step>b{
+  font-family:var(--display)!important;
+  font-weight:400!important;
+  font-size:20px!important;
+  line-height:24px!important;
+  letter-spacing:var(--tracking-heading)!important;
+}
+
+/* ========================================================================== 
+   06. HOME FEATURE IN-USE CARD
+   Image takes more of the card; text/action remain one compact information group.
+   ========================================================================== */
+.home-use-feature{
+  grid-template-rows:384px auto!important;
+  height:auto!important;
+  min-height:560px!important;
+}
+.home-use-copy{
+  min-height:0!important;
+  height:auto!important;
+  padding:24px!important;
+}
+.home-use-copy .use-link{
+  margin-top:16px!important;
+  align-self:flex-start!important;
+  padding-top:0!important;
+}
+
+/* ========================================================================== 
+   07. PDP FIRST-VIEW GALLERY
    Main image + square media rail stays inside the first-view image area.
    ========================================================================== */
 .pdp-top-ux{align-items:start!important}
@@ -187,6 +352,7 @@
   flex:1 1 auto!important;
   min-height:0!important;
   height:auto!important;
+  position:relative;
 }
 .pdp-gallery-thumbs{
   flex:0 0 auto;
@@ -211,6 +377,27 @@
   bottom:8px!important;
   padding:4px 6px!important;
 }
+.pdp-gallery-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:4;
+  width:48px;
+  height:48px;
+  border:1px solid rgba(21,21,21,.22);
+  background:rgba(255,255,255,.92);
+  color:#151515;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+}
+.pdp-gallery-nav.prev{left:16px}
+.pdp-gallery-nav.next{right:16px}
+.pdp-gallery-nav:hover{background:#fff}
+.pdp-gallery-nav:focus-visible{outline:2px solid #151515;outline-offset:3px}
 
 /* Keep the purchase column compact enough to remain paired with the gallery on
    common laptop/desktop first views without shrinking customer-facing copy. */
@@ -223,6 +410,11 @@
   padding:8px 16px!important;
 }
 
+@container (max-width:1320px){
+  /* Home feature/list become one column without retaining desktop fixed heights. */
+  .home-use-feature{min-height:0!important}
+}
+
 @container (max-width:1040px){
   .pdp-gallery-ux{
     height:680px!important;
@@ -230,14 +422,19 @@
     max-height:none;
   }
   .pdp-top-ux .buybox{padding:32px var(--page-gutter)!important}
+  .shop-category{min-height:208px}
 }
 
 @media(max-width:760px){
   .image-overlay-hero{min-height:480px;padding-block:64px}
   .prefooter-image-cta{min-height:400px;padding-block:64px!important}
   .btn{width:100%;white-space:normal}
+  .balanced-cta-row .btn{width:100%;min-width:0}
   .action-row{width:100%;flex-direction:column;align-items:stretch}
   .pdp-gallery-ux{height:600px!important;min-height:600px!important;padding:16px!important}
   .pdp-gallery-thumbs{grid-auto-columns:96px}
   .pdp-gallery-thumb{width:96px!important;min-width:96px}
+  .pdp-gallery-nav{width:40px;height:40px;font-size:20px}
+  .pdp-gallery-nav.prev{left:8px}
+  .pdp-gallery-nav.next{right:8px}
 }
