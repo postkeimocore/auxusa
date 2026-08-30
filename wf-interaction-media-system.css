@@ -55,7 +55,13 @@
 .evidence-card>b + p,
 .precision-card b + p,
 .story-step b + p,
-.review-placeholder b + p{
+.review-placeholder b + p,
+.home-use-copy .h3 + .lead,
+.home-use-row-copy .h3 + p,
+.pdp-value-copy .h3 + p,
+.pdp-proof-layout.equalized .pdp-proof-equal-copy .h3 + p,
+.pdp-use-copy .h3 + p,
+.use-jump .h3 + p{
   margin-top:var(--heading-body-gap)!important;
 }
 
