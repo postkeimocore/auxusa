@@ -1,4 +1,4 @@
-/* AUX USA / In Use Redesign v1.4
+/* AUX USA / In Use Redesign v1.5
    Situation cards + alternating scene/product modules.
 */
 
@@ -55,21 +55,21 @@
 .use-jump>.h3::after{content:none!important}
 .use-jump>p{
   color:rgba(255,255,255,.92)!important;
-  width:100%;
-  padding-right:0!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:24px;
-  align-items:end;
+  position:relative!important;
+  width:100%!important;
+  max-width:none!important;
+  padding-right:64px!important;
 }
 .use-jump>p::after{
   content:'↓';
+  position:absolute;
+  right:0;
+  bottom:0;
   font-family:var(--sans);
   font-size:24px;
   line-height:24px;
   font-weight:400;
   color:var(--on-dark)!important;
-  align-self:end;
 }
 .use-jump>.use-photo-label{
   position:absolute!important;
@@ -199,6 +199,7 @@ body.preview-mode .use-photo-label{display:none!important}
 
 @media(max-width:760px){
   .use-jump{min-height:280px!important;padding:24px!important}
+  .use-jump>p{padding-right:48px!important}
   .inuse-scene-visual{min-height:400px}
   .inuse-scene-copy{padding:48px 24px}
 }
