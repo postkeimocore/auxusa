@@ -27,6 +27,17 @@
 <link rel="stylesheet" href="wf-review-layout-restore.css" />
 <style>
   .ja-note{display:none!important}
+
+  /* Photography readability layer only. Do not alter layout/content stacking. */
+  .image-overlay-hero::after,
+  .prefooter-image-cta::after,
+  .shop-category::after,
+  .master-image-nav-card::after,
+  .master-image-band::after,
+  .use-jump::after{
+    z-index:0!important;
+    pointer-events:none!important;
+  }
 </style>
 </head>
 <body>
