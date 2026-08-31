@@ -15,11 +15,11 @@
   function setImage(el,file,position='center'){
     if(!el||!file) return;
     const image=`url("${DIR}${file}")`;
-    el.style.backgroundImage=image;
-    el.style.backgroundSize='cover';
-    el.style.backgroundPosition=position;
-    el.style.backgroundRepeat='no-repeat';
-    el.style.setProperty('--section-image',image);
+    el.style.setProperty('background-image',image,'important');
+    el.style.setProperty('background-size','cover','important');
+    el.style.setProperty('background-position',position,'important');
+    el.style.setProperty('background-repeat','no-repeat','important');
+    el.style.setProperty('--section-image',image,'important');
     el.dataset.photoAsset=file;
     el.querySelectorAll(':scope > .photo-label, :scope > .use-photo-label').forEach(label=>label.style.display='none');
   }
@@ -57,6 +57,9 @@
     indexed('.home-use-list .home-use-row-visual',[
       'plating-scallops.webp','serving-salmon.webp','small-food-olives-wide.webp'
     ]);
+    indexed('.home-use-list .home-use-thumb',[
+      'plating-scallops.webp','serving-salmon.webp','small-food-olives-wide.webp'
+    ]);
     one('.master-home-about','manufacturing-inspection-lineup.webp','center 48%');
   }
 
@@ -73,6 +76,7 @@
       table:'small-food-olive-macro.webp'
     }[id];
     one('.master-collection-hero-image',hero);
+    one('.collection-visual',hero);
     productCards();
     one('.master-collection-about-aux','manufacturing-caliper-over-shoulder.webp');
   }
@@ -94,6 +98,9 @@
     one('.pdp-gallery-shot.main','product-pair-minimal.webp');
     indexed('.pdp-gallery-thumb',[
       'product-pair-minimal.webp','product-pair-shadow.webp','product-tip-tomato-macro.webp','product-tomato-scale.webp'
+    ]);
+    indexed('.pdp-gallery-shot',[
+      'product-pair-minimal.webp','small-food-transfer.webp','product-tip-tomato-macro.webp','product-tomato-scale.webp'
     ]);
     one('.master-pdp-primary-image','small-food-transfer.webp');
     one('.pdp-integrated-feature-visual','small-food-transfer.webp');
