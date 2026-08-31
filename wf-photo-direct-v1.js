@@ -14,10 +14,12 @@
 
   function setImage(el,file,position='center'){
     if(!el||!file) return;
-    el.style.backgroundImage=`url("${DIR}${file}")`;
+    const image=`url("${DIR}${file}")`;
+    el.style.backgroundImage=image;
     el.style.backgroundSize='cover';
     el.style.backgroundPosition=position;
     el.style.backgroundRepeat='no-repeat';
+    el.style.setProperty('--section-image',image);
     el.dataset.photoAsset=file;
     el.querySelectorAll(':scope > .photo-label, :scope > .use-photo-label').forEach(label=>label.style.display='none');
   }
@@ -32,7 +34,6 @@
   }
 
   function categoryCards(){
-    one('.master-image-nav-card[data-go="cook"]','cook-pasta.webp');
     document.querySelectorAll('.master-image-nav-card[data-go="cook"]').forEach(el=>setImage(el,'cook-pasta.webp'));
     document.querySelectorAll('.master-image-nav-card[data-go="serve"]').forEach(el=>setImage(el,'serve-salad.webp'));
     document.querySelectorAll('.master-image-nav-card[data-go="table"]').forEach(el=>setImage(el,'table-tea-bag.webp'));
