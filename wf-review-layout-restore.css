@@ -1,0 +1,99 @@
+/* AUX USA / User-requested visual corrections
+   - Restore the approved Customer Reviews layout exactly; color changes only.
+   - Home hero floating copy box uses #fefdfb while the surrounding right field stays #f5f5f5.
+*/
+
+/* Home Hero: keep the section/right field neutral, but warm the floating content box. */
+.restored-home-hero .product-hero-stage{
+  background:#f5f5f5!important;
+}
+.restored-home-hero .product-hero-panel{
+  background:#fefdfb!important;
+}
+
+/* Customer Reviews: restore the pre-surface-change layout.
+   These rules only undo the layout rewrite introduced in wf-surface-final.css. */
+#reviews .review-shell{
+  display:grid!important;
+  grid-template-columns:256px minmax(0,1fr)!important;
+  gap:48px!important;
+  margin-top:40px!important;
+  align-items:initial!important;
+}
+#reviews .review-overview{
+  display:block!important;
+  padding:0 48px 0 0!important;
+  border:0!important;
+  border-right:1px solid #ddd!important;
+  background:#fffdfc!important;
+}
+#reviews .review-placeholder-score{
+  display:block!important;
+  font-size:48px!important;
+  line-height:56px!important;
+  letter-spacing:normal!important;
+  margin:0!important;
+}
+#reviews .stars-line{
+  display:block!important;
+  margin:8px 0!important;
+  font-size:12px!important;
+  line-height:16px!important;
+}
+#reviews .review-overview p{
+  display:block!important;
+  margin-top:16px!important;
+  max-width:none!important;
+  font-size:16px!important;
+  line-height:24px!important;
+}
+#reviews .review-overview .btn{
+  display:inline-flex!important;
+  width:auto!important;
+  margin-top:24px!important;
+  justify-self:auto!important;
+}
+#reviews .review-placeholder-list{
+  display:block!important;
+  border-top:1px solid #ddd!important;
+}
+#reviews .review-placeholder{
+  display:grid!important;
+  grid-template-columns:152px minmax(0,1fr)!important;
+  gap:32px!important;
+  padding:24px 0!important;
+  border:0!important;
+  border-bottom:1px solid #ddd!important;
+  background:#fffdfc!important;
+}
+#reviews .review-placeholder .meta{
+  font-size:12px!important;
+  line-height:16px!important;
+}
+#reviews .review-placeholder b{
+  font-size:20px!important;
+  line-height:24px!important;
+}
+#reviews .review-placeholder p{
+  margin-top:8px!important;
+  font-size:16px!important;
+  line-height:24px!important;
+  max-width:720px!important;
+}
+
+@media(max-width:1100px){
+  #reviews .review-shell{
+    grid-template-columns:1fr!important;
+  }
+  #reviews .review-overview{
+    border-right:0!important;
+    border-bottom:1px solid #ddd!important;
+    padding:0 0 26px!important;
+  }
+}
+
+@media(max-width:760px){
+  #reviews .review-placeholder{
+    grid-template-columns:1fr!important;
+  }
+}
