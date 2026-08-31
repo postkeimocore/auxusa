@@ -24,6 +24,24 @@ body.accent-mode .restored-home-hero .btn.black{background:var(--aux-accent)!imp
 body.accent-mode .restored-home-hero .btn.ghost{background:transparent!important;border-color:var(--aux-accent)!important;color:var(--aux-accent)!important}
 body.accent-mode .restored-home-hero .pager span.on{background:var(--aux-accent)!important}
 
+/* Section-level headings only. Card titles remain neutral. */
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) > .h2,
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) > .master-section-head > .h2,
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .master-feature-copy > .h2,
+body.accent-mode .master-collection-about > .h2,
+body.accent-mode .inuse-explore > .h2,
+body.accent-mode .master-pdp-compare > .h2,
+body.accent-mode .master-related-products > .h2,
+body.accent-mode .master-why-design > .h2,
+body.accent-mode .master-why-shop > .h2{
+  color:var(--aux-accent)!important;
+}
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) > .eyebrow,
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) > .master-section-head > .eyebrow,
+body.accent-mode .master-feature-copy > .eyebrow{
+  color:var(--aux-accent)!important;
+}
+
 /* Primary actions on light / neutral sections only. Image-backed and dark CTAs stay white. */
 body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .btn.black,
 body.accent-mode .master-exit-copy .btn,
@@ -32,8 +50,16 @@ body.accent-mode .buybox .add{
   border-color:var(--aux-accent)!important;
   color:#fff!important;
 }
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .btn:not(.black),
 body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .btn.ghost{
+  background:transparent!important;
   border-color:var(--aux-accent)!important;
+  color:var(--aux-accent)!important;
+}
+
+/* Reviews: stars / rating entry points. */
+body.accent-mode .buybox .review-jump,
+body.accent-mode .stars-line{
   color:var(--aux-accent)!important;
 }
 
