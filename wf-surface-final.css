@@ -1,4 +1,4 @@
-/* AUX USA / Final Surface & Placeholder System v1.0
+/* AUX USA / Final Surface & Placeholder System v1.1
    Final cascade authority for customer-facing surfaces.
 
    Surface rules
@@ -56,7 +56,6 @@ body,
   background-color:#fffdfc!important;
 }
 
-/* Preview chrome must not re-introduce pure white. */
 body.preview-mode,
 body.preview-mode .browser,
 .preview-dock,
@@ -74,8 +73,6 @@ body.preview-mode .browser,
   background:#f5f5f5!important;
 }
 
-/* Home Hero: the non-photo field and the floating copy panel are the same
-   neutral surface. The photo placeholder itself is handled in section 03. */
 .restored-home-hero .product-hero-stage,
 .restored-home-hero .product-hero-panel,
 .master-home-hero-copy{
@@ -83,7 +80,6 @@ body.preview-mode .browser,
 }
 .restored-home-hero .product-hero-panel{box-shadow:none!important}
 
-/* PDP gallery shell is neutral; actual image placeholders are darker. */
 .master-pdp-top .pdp-gallery-ux,
 .master-pdp-top .pdp-gallery-thumbs,
 .restored-pdp-page .pdp-gallery-ux,
@@ -131,6 +127,16 @@ body.preview-mode .browser,
   background-image:none!important;
 }
 
+/* High-specificity legacy PDP rules previously kept the gallery images neutral. */
+.master-pdp-top .pdp-gallery-stage,
+.master-pdp-top .pdp-gallery-thumb,
+.restored-pdp-page .pdp-gallery-stage,
+.restored-pdp-page .pdp-gallery-thumb,
+.restored-pdp-page .pdp-gallery-stage .pdp-gallery-shot{
+  background:#e7e9e5!important;
+  background-image:none!important;
+}
+
 /* --------------------------------------------------------------------------
    04. WARM-WHITE TEXT / UI INSTEAD OF PURE WHITE
    -------------------------------------------------------------------------- */
@@ -167,6 +173,8 @@ body.preview-mode .browser,
   color:#fffdfc!important;
 }
 
+.master-filter-chip.active{color:#fffdfc!important}
+
 .btn{
   background:#fffdfc!important;
   color:#151515!important;
@@ -190,8 +198,6 @@ body.preview-mode .browser,
   color:#fffdfc!important;
 }
 
-/* Image-background CTA semantics: filled primary + outlined/translucent secondary.
-   This reasserts the intended states after the global warm-white override. */
 .image-overlay-hero .btn.black,
 .prefooter-image-cta .btn.black,
 .master-image-band .btn.black{
@@ -208,7 +214,6 @@ body.preview-mode .browser,
   backdrop-filter:blur(2px);
 }
 
-/* PDP About AUX has a single standard CTA; keep it clearly readable. */
 .restored-pdp-about.pdp-about-image-band .btn{
   background:#fffdfc!important;
   border-color:#fffdfc!important;
