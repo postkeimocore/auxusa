@@ -27,6 +27,27 @@
 <link rel="stylesheet" href="wf-review-layout-restore.css" />
 <style>
   .ja-note{display:none!important}
+
+  /* Keep the existing readability gradient above photography and below copy. */
+  .image-overlay-hero::after,
+  .prefooter-image-cta::after,
+  .shop-category::after,
+  .master-image-nav-card::after,
+  .master-image-band::after,
+  .use-jump::after{
+    z-index:1!important;
+    pointer-events:none!important;
+  }
+
+  .image-overlay-hero > *:not(img),
+  .prefooter-image-cta > *:not(img),
+  .shop-category > *:not(img),
+  .master-image-nav-copy,
+  .master-image-band-copy,
+  .use-jump > *:not(img){
+    position:relative;
+    z-index:2!important;
+  }
 </style>
 </head>
 <body>
