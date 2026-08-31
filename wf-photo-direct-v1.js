@@ -44,7 +44,11 @@
 
   function applyHome(){
     one('.master-home-hero .master-photo','small-food-transfer.webp','center 45%');
+    one('.product-hero-visual','small-food-transfer.webp','center 45%');
     indexed('.master-aux-feature .master-shape-gallery .master-photo',[
+      'product-tip-macro-dark.webp','product-tip-tomato-macro.webp','product-pair-minimal.webp'
+    ]);
+    indexed('.home-precision-visual',[
       'product-tip-macro-dark.webp','product-tip-tomato-macro.webp','product-pair-minimal.webp'
     ]);
     productCards();
@@ -74,6 +78,7 @@
   }
 
   function applyInUse(){
+    one('.master-inuse-hero','cook-frying.webp','center 45%');
     indexed('.use-jump',[
       'cook-frying.webp','plating-scallops.webp','serve-meatballs.webp','small-food-olives-wide.webp'
     ]);
@@ -86,18 +91,30 @@
 
   function applyPdp(){
     one('.pdp-gallery-stage','product-pair-minimal.webp');
+    one('.pdp-gallery-shot.main','product-pair-minimal.webp');
     indexed('.pdp-gallery-thumb',[
       'product-pair-minimal.webp','product-pair-shadow.webp','product-tip-tomato-macro.webp','product-tomato-scale.webp'
     ]);
     one('.master-pdp-primary-image','small-food-transfer.webp');
+    one('.pdp-integrated-feature-visual','small-food-transfer.webp');
     indexed('.master-pdp-features .master-feature-card .master-photo',[
       'product-tip-macro-dark.webp','product-tip-tomato-macro.webp','product-tomato-scale.webp'
     ]);
+    indexed('.pdp-proof-equal-visual',[
+      'small-food-olive-macro.webp','product-tomato-scale.webp','table-tea-bag.webp'
+    ]);
+    one('.pdp-feature-image-band','small-food-transfer.webp','center 48%');
     productCards();
     one('.master-pdp-about','manufacturing-caliper-close.webp');
+    one('.restored-pdp-about','manufacturing-inspection-lineup.webp','center 48%');
+    one('.pdp-brand-visual','manufacturing-caliper-close.webp');
   }
 
   function applyWhy(){
+    one('.master-why-hero','plating-scallops.webp','center 45%');
+    indexed('.why-art',[
+      'product-tip-macro-dark.webp','product-tip-tomato-macro.webp','small-food-olive-macro.webp','product-lineup-marble.webp'
+    ]);
     indexed('.master-why-feature .master-shape-gallery .master-photo',[
       'product-tip-macro-dark.webp','product-tip-tomato-macro.webp','small-food-olive-macro.webp'
     ]);
