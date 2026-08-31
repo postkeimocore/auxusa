@@ -1,0 +1,333 @@
+/* AUX USA / Final Surface & Placeholder System v1.0
+   Final cascade authority for customer-facing surfaces.
+
+   Surface rules
+   - Warm white: #fffdfc
+   - Neutral: #f5f5f5
+   - Non-overlay image placeholder: #e7e9e5
+   - Dark: #151515
+   - Image + black gradient: existing overlay components only
+*/
+
+:root{
+  --paper:#fffdfc!important;
+  --base:#fffdfc!important;
+  --surface:#fffdfc!important;
+  --accent:#f5f5f5!important;
+  --soft:#f5f5f5!important;
+  --warm:#f5f5f5!important;
+  --cool:#f5f5f5!important;
+  --section-neutral:#f5f5f5!important;
+  --surface-soft:#e7e9e5!important;
+  --on-dark:#fffdfc!important;
+  --interactive-inverse:#fffdfc!important;
+}
+
+/* --------------------------------------------------------------------------
+   01. WARM-WHITE SURFACES
+   -------------------------------------------------------------------------- */
+body,
+.browser,
+.site-header,
+.page,
+.buybox,
+.collection-copy,
+.page > section.section:not(.dark):not(.soft):not(.warm):not(.cool):not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
+.page > .restored-pdp-product-features,
+.pdp-value-card,
+.pdp-proof-item,
+.pdp-proof-layout.equalized .pdp-proof-equal-card,
+.pdp-value-copy,
+.pdp-proof-equal-copy,
+.pdp-compare-cell,
+.compare-card,
+.master-feature-card,
+.master-compare-card,
+.precision-card,
+.evidence-card,
+.shop-category:not(.master-image-nav-card),
+.spec,
+.input,
+.field input,
+.field textarea,
+.field select,
+.related-tools button,
+.why-center{
+  background-color:#fffdfc!important;
+}
+
+/* Preview chrome must not re-introduce pure white. */
+body.preview-mode,
+body.preview-mode .browser,
+.preview-dock,
+.preview-dock button{
+  background:#fffdfc!important;
+}
+.preview-dock{background:rgba(255,253,252,.94)!important}
+
+/* --------------------------------------------------------------------------
+   02. NEUTRAL #f5f5f5 SURFACES
+   -------------------------------------------------------------------------- */
+.page > section.section.soft:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
+.page > section.section.warm:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band),
+.page > section.section.cool:not(.prefooter-image-cta):not(.image-overlay-hero):not(.pdp-about-image-band):not(.master-image-band){
+  background:#f5f5f5!important;
+}
+
+/* Home Hero: the non-photo field and the floating copy panel are the same
+   neutral surface. The photo placeholder itself is handled in section 03. */
+.restored-home-hero .product-hero-stage,
+.restored-home-hero .product-hero-panel,
+.master-home-hero-copy{
+  background:#f5f5f5!important;
+}
+.restored-home-hero .product-hero-panel{box-shadow:none!important}
+
+/* PDP gallery shell is neutral; actual image placeholders are darker. */
+.master-pdp-top .pdp-gallery-ux,
+.master-pdp-top .pdp-gallery-thumbs,
+.restored-pdp-page .pdp-gallery-ux,
+.restored-pdp-page .pdp-gallery-thumbs{
+  background:#f5f5f5!important;
+}
+
+/* --------------------------------------------------------------------------
+   03. UNIFIED NON-OVERLAY IMAGE PLACEHOLDER #e7e9e5
+   Do NOT include image-overlay cards / prefooter bands / category image cards.
+   -------------------------------------------------------------------------- */
+.master-photo,
+.master-collection-hero-image,
+.master-exit-image,
+.master-pdp-primary-image,
+.master-use-image,
+.master-home-hero-visual .master-photo,
+.product-hero-visual,
+.home-precision-visual,
+.product-img,
+.collection-visual,
+.home-use-visual,
+.home-use-row-visual,
+.home-use-thumb,
+.pdp-use-visual,
+.inuse-scene-visual,
+.inuse-related-img,
+.use-detail-visual,
+.pdp-gallery-stage,
+.pdp-gallery-thumb,
+.pdp-gallery-shot,
+.pdp-integrated-feature-visual,
+.pdp-value-visual,
+.pdp-proof-main,
+.pdp-proof-visual,
+.pdp-proof-layout.equalized .pdp-proof-equal-visual,
+.pdp-compare-thumb,
+.pdp-brand-visual,
+.pdp-feature-image-band,
+.visualbox,
+.evidence-visual,
+.why-art,
+.gallery .g{
+  background:#e7e9e5!important;
+  background-image:none!important;
+}
+
+/* --------------------------------------------------------------------------
+   04. WARM-WHITE TEXT / UI INSTEAD OF PURE WHITE
+   -------------------------------------------------------------------------- */
+.section.dark,
+.why-band,
+.site-footer,
+.image-overlay-hero,
+.prefooter-image-cta,
+.master-image-band,
+.master-image-nav-card,
+.shop-category{
+  --on-dark:#fffdfc;
+  --interactive-inverse:#fffdfc;
+}
+.section.dark,
+.why-band,
+.image-overlay-hero,
+.prefooter-image-cta,
+.master-image-band,
+.master-image-nav-card,
+.shop-category,
+.master-image-band .h2,
+.master-image-band .h3,
+.master-image-band .lead,
+.prefooter-image-cta .h2,
+.prefooter-image-cta .h3,
+.prefooter-image-cta .lead,
+.prefooter-image-cta p,
+.master-image-nav-copy .h3,
+.master-image-nav-copy p,
+.master-nav-arrow,
+.shop-category>b,
+.shop-category>p{
+  color:#fffdfc!important;
+}
+
+.btn{
+  background:#fffdfc!important;
+  color:#151515!important;
+}
+.btn.black,
+.add{
+  background:#151515!important;
+  border-color:#151515!important;
+  color:#fffdfc!important;
+}
+.section.dark .btn:not(.ghost),
+.why-band .btn:not(.ghost){
+  background:#fffdfc!important;
+  border-color:#fffdfc!important;
+  color:#151515!important;
+}
+.section.dark .btn.ghost,
+.why-band .btn.ghost{
+  background:transparent!important;
+  border-color:#fffdfc!important;
+  color:#fffdfc!important;
+}
+
+/* Image-background CTA semantics: filled primary + outlined/translucent secondary.
+   This reasserts the intended states after the global warm-white override. */
+.image-overlay-hero .btn.black,
+.prefooter-image-cta .btn.black,
+.master-image-band .btn.black{
+  background:#fffdfc!important;
+  border-color:#fffdfc!important;
+  color:#151515!important;
+}
+.image-overlay-hero .btn:not(.black),
+.prefooter-image-cta .btn:not(.black),
+.master-image-band .btn:not(.black){
+  background:rgba(0,0,0,.14)!important;
+  border-color:#fffdfc!important;
+  color:#fffdfc!important;
+  backdrop-filter:blur(2px);
+}
+
+/* PDP About AUX has a single standard CTA; keep it clearly readable. */
+.restored-pdp-about.pdp-about-image-band .btn{
+  background:#fffdfc!important;
+  border-color:#fffdfc!important;
+  color:#151515!important;
+  backdrop-filter:none!important;
+}
+
+.photo-label,
+.visual-caption,
+.pdp-proof-main-copy,
+.pdp-gallery-thumb-index,
+.use-photo-label,
+.chip{
+  background:rgba(255,253,252,.90)!important;
+}
+
+/* --------------------------------------------------------------------------
+   05. CUSTOMER REVIEWS — QUIET, UNBOXED SUMMARY + REVIEW ROWS
+   -------------------------------------------------------------------------- */
+#reviews .review-shell{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:32px!important;
+  margin-top:40px!important;
+}
+#reviews .review-overview{
+  display:grid!important;
+  grid-template-columns:176px minmax(0,1fr) 208px!important;
+  grid-template-rows:auto auto!important;
+  column-gap:32px!important;
+  row-gap:8px!important;
+  align-items:center!important;
+  padding:24px 0!important;
+  border:0!important;
+  border-top:1px solid var(--border)!important;
+  border-bottom:1px solid var(--border)!important;
+  background:transparent!important;
+}
+#reviews .review-placeholder-score{
+  grid-column:1!important;
+  grid-row:1 / 3!important;
+  font-size:48px!important;
+  line-height:56px!important;
+  letter-spacing:-.04em!important;
+  margin:0!important;
+}
+#reviews .stars-line{
+  grid-column:2!important;
+  grid-row:1!important;
+  margin:0!important;
+  font-size:16px!important;
+  line-height:24px!important;
+}
+#reviews .review-overview p{
+  grid-column:2!important;
+  grid-row:2!important;
+  margin:0!important;
+  max-width:560px!important;
+  font-size:16px!important;
+  line-height:24px!important;
+}
+#reviews .review-overview .btn{
+  grid-column:3!important;
+  grid-row:1 / 3!important;
+  width:208px!important;
+  margin:0!important;
+  justify-self:end!important;
+}
+#reviews .review-placeholder-list{
+  display:grid!important;
+  gap:0!important;
+  border-top:1px solid var(--border)!important;
+}
+#reviews .review-placeholder{
+  display:grid!important;
+  grid-template-columns:184px minmax(0,1fr)!important;
+  gap:32px!important;
+  padding:24px 0!important;
+  border:0!important;
+  border-bottom:1px solid var(--border)!important;
+  background:transparent!important;
+}
+#reviews .review-placeholder .meta{
+  font-size:12px!important;
+  line-height:16px!important;
+}
+#reviews .review-placeholder b{
+  font-size:20px!important;
+  line-height:24px!important;
+}
+#reviews .review-placeholder p{
+  margin-top:8px!important;
+  font-size:16px!important;
+  line-height:24px!important;
+  max-width:720px!important;
+}
+
+@container (max-width:1040px){
+  #reviews .review-overview{
+    grid-template-columns:144px minmax(0,1fr)!important;
+  }
+  #reviews .review-overview .btn{
+    grid-column:1 / -1!important;
+    grid-row:3!important;
+    justify-self:start!important;
+  }
+}
+
+@media(max-width:760px){
+  #reviews .review-overview,
+  #reviews .review-placeholder{
+    grid-template-columns:1fr!important;
+  }
+  #reviews .review-placeholder-score,
+  #reviews .stars-line,
+  #reviews .review-overview p,
+  #reviews .review-overview .btn{
+    grid-column:1!important;
+    grid-row:auto!important;
+    justify-self:start!important;
+  }
+}
