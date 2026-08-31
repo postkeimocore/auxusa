@@ -1,5 +1,6 @@
 /* AUX USA / User-requested visual corrections
    - Restore the approved Customer Reviews layout exactly; color changes only.
+   - Review sub-parts do not own separate filled backgrounds.
    - Home hero floating copy box uses #fefdfb while the surrounding right field stays #f5f5f5.
 */
 
@@ -11,8 +12,8 @@
   background:#fefdfb!important;
 }
 
-/* Customer Reviews: restore the pre-surface-change layout.
-   These rules only undo the layout rewrite introduced in wf-surface-final.css. */
+/* Customer Reviews: keep the approved two-column layout, but remove the
+   accidental filled surfaces from the summary and individual review rows. */
 #reviews .review-shell{
   display:grid!important;
   grid-template-columns:256px minmax(0,1fr)!important;
@@ -25,7 +26,7 @@
   padding:0 48px 0 0!important;
   border:0!important;
   border-right:1px solid #ddd!important;
-  background:#fffdfc!important;
+  background:transparent!important;
 }
 #reviews .review-placeholder-score{
   display:block!important;
@@ -56,6 +57,7 @@
 #reviews .review-placeholder-list{
   display:block!important;
   border-top:1px solid #ddd!important;
+  background:transparent!important;
 }
 #reviews .review-placeholder{
   display:grid!important;
@@ -64,7 +66,7 @@
   padding:24px 0!important;
   border:0!important;
   border-bottom:1px solid #ddd!important;
-  background:#fffdfc!important;
+  background:transparent!important;
 }
 #reviews .review-placeholder .meta{
   font-size:12px!important;
