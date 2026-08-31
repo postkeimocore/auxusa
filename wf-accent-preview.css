@@ -1,0 +1,66 @@
+/* AUX USA / optional 5% accent preview
+   Deliberately isolated behind body.accent-mode so the approved neutral design
+   remains the exact fallback when the switch is off. */
+
+:root{--aux-accent:#a8274b}
+
+/* Review / preview controls */
+.accent-toggle{display:inline-flex;align-items:center;gap:6px}
+.accent-toggle::before{content:'';width:7px;height:7px;background:var(--aux-accent);border-radius:50%;flex:0 0 auto}
+.toolbar .accent-toggle.active{background:var(--aux-accent);border-color:var(--aux-accent);color:#fff}
+.preview-dock .accent-toggle.active{border-color:var(--aux-accent);box-shadow:inset 0 0 0 1px var(--aux-accent);color:var(--aux-accent)}
+
+/* Structural lines: thin brand rhythm, not large color fields. */
+body.accent-mode .site-header{border-bottom-color:var(--aux-accent)!important}
+body.accent-mode .page > .section{border-bottom-color:rgba(168,39,75,.72)!important}
+body.accent-mode .master-filterbar,
+body.accent-mode .filterbar{border-top-color:rgba(168,39,75,.55)!important;border-bottom-color:rgba(168,39,75,.55)!important}
+
+/* Home hero: explicit user-requested accent placements. */
+body.accent-mode .restored-home-hero .product-hero-panel{border-top-color:var(--aux-accent)!important}
+body.accent-mode .restored-home-hero .product-hero-index{color:var(--aux-accent)!important}
+body.accent-mode .restored-home-hero .product-hero-panel > .h1{color:var(--aux-accent)!important}
+body.accent-mode .restored-home-hero .btn.black{background:var(--aux-accent)!important;border-color:var(--aux-accent)!important;color:#fff!important}
+body.accent-mode .restored-home-hero .btn.ghost{background:transparent!important;border-color:var(--aux-accent)!important;color:var(--aux-accent)!important}
+body.accent-mode .restored-home-hero .pager span.on{background:var(--aux-accent)!important}
+
+/* Primary actions on light / neutral sections only. Image-backed and dark CTAs stay white. */
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .btn.black,
+body.accent-mode .master-exit-copy .btn,
+body.accent-mode .buybox .add{
+  background:var(--aux-accent)!important;
+  border-color:var(--aux-accent)!important;
+  color:#fff!important;
+}
+body.accent-mode .page > .section:not(.dark):not(.master-image-band):not(.prefooter-image-cta):not(.image-overlay-hero) .btn.ghost{
+  border-color:var(--aux-accent)!important;
+  color:var(--aux-accent)!important;
+}
+
+/* Small state / sequence markers: repeat the brand color without increasing area. */
+body.accent-mode .master-number,
+body.accent-mode .pdp-gallery-thumb-index,
+body.accent-mode .story-step > span,
+body.accent-mode .precision-card > span,
+body.accent-mode .master-rating a,
+body.accent-mode .use-link,
+body.accent-mode .master-text-link{
+  color:var(--aux-accent)!important;
+}
+
+/* Selected states. */
+body.accent-mode .master-filter-chip.active,
+body.accent-mode .filterbar .active{
+  background:var(--aux-accent)!important;
+  border-color:var(--aux-accent)!important;
+  color:#fff!important;
+}
+body.accent-mode .pdp-gallery-thumb.active{border-color:var(--aux-accent)!important}
+body.accent-mode .pager span.on,
+body.accent-mode .master-hero-pager span.active{background:var(--aux-accent)!important}
+
+/* Fine editorial rules: use the accent as an edge, never a filled section. */
+body.accent-mode .proof,
+body.accent-mode .master-use-value-card,
+body.accent-mode .story-step,
+body.accent-mode .precision-card{border-top-color:rgba(168,39,75,.65)!important}
