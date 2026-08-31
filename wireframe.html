@@ -28,25 +28,21 @@
 <style>
   .ja-note{display:none!important}
 
-  /* Keep the existing readability gradient above photography and below copy. */
+  /* Photo readability layer only: photo -> gradient -> existing copy. */
   .image-overlay-hero::after,
   .prefooter-image-cta::after,
   .shop-category::after,
   .master-image-nav-card::after,
   .master-image-band::after,
   .use-jump::after{
-    z-index:1!important;
+    z-index:0!important;
     pointer-events:none!important;
   }
 
-  .image-overlay-hero > *:not(img),
-  .prefooter-image-cta > *:not(img),
-  .shop-category > *:not(img),
-  .master-image-nav-copy,
-  .master-image-band-copy,
-  .use-jump > *:not(img){
+  /* This wrapper had no stacking level; keep only it above the gradient. */
+  .master-image-nav-copy{
     position:relative;
-    z-index:2!important;
+    z-index:1;
   }
 </style>
 </head>
