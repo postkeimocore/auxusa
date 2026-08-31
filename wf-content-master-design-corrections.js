@@ -41,7 +41,7 @@
     const section=document.createElement('section');
     section.className='hero product-hero restored-home-hero';
     section.innerHTML=`<div class="product-hero-stage">
-      <div class="product-hero-visual clickable" data-go="pdp"><img class="wf-photo" src="assets/wireframe/small-food-transfer.webp" alt=""><span class="photo-label">${t('撮影：代表商品＋手＋身近な料理の使用シーン','Featured product + hand + familiar food')}</span></div>
+      <div class="product-hero-visual clickable" data-go="pdp"><span class="photo-label">${t('撮影：代表商品＋手＋身近な料理の使用シーン','Featured product + hand + familiar food')}</span></div>
       <div class="product-hero-panel">
         <div class="product-hero-top"><div class="eyebrow">TABLE</div><span class="product-hero-index">01 / 03</span></div>
         <h1 class="display h1">${t('商品名','Product Name')}</h1>
@@ -66,9 +66,9 @@
         <div class="row action-row"><a class="btn" data-go="why">${t('AUXについて詳しく見る','Learn About AUX')}</a></div>
       </div>
       <div class="home-precision-collage">
-        <div class="home-precision-visual main"><img class="wf-photo" src="assets/wireframe/product-tip-macro-dark.webp" alt=""><span class="photo-label">${t('撮影：複数商品の形状差 / 麺用の先端','Shape comparison / noodle-focused tip')}</span></div>
-        <div class="home-precision-visual"><img class="wf-photo" src="assets/wireframe/product-tip-tomato-macro.webp" alt=""><span class="photo-label">${t('撮影：複数商品の形状差 / 油を切れる形状','Shape comparison / draining form')}</span></div>
-        <div class="home-precision-visual"><img class="wf-photo" src="assets/wireframe/product-pair-minimal.webp" alt=""><span class="photo-label">${t('撮影：複数商品の形状差 / コンパクトサイズ','Shape comparison / compact size')}</span></div>
+        <div class="home-precision-visual main"><span class="photo-label">${t('撮影：複数商品の形状差 / 麺用の先端','Shape comparison / noodle-focused tip')}</span></div>
+        <div class="home-precision-visual"><span class="photo-label">${t('撮影：複数商品の形状差 / 油を切れる形状','Shape comparison / draining form')}</span></div>
+        <div class="home-precision-visual"><span class="photo-label">${t('撮影：複数商品の形状差 / コンパクトサイズ','Shape comparison / compact size')}</span></div>
       </div>
     </div>`;
     currentSection.replaceWith(section);
